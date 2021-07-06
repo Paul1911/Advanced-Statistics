@@ -12,18 +12,51 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 \begin{figure}[h]
 \centering
 \includegraphics[width=16cm]{pics/1a.pdf}
-\caption{Bernoulli Distribution of One Trial}
+\caption{Bernoulli distribution of one trial}
 \label{fig:1a}
 \end{figure}
 \FloatBarrier
 
 
 As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. 
-For a Bernoulli experiment, the expected value is defined as p where p is defined as the probability of success on the trial CITATION HOGG. The probability of success in our case is p = 0.69 which is therefore our expected value. This means if we would repeat the experiment one hundred times, we expect to observe 69 successes. 
+Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is 
+
+\begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
+\label{expvaluebernoulli}\end{equation}
+
+Applied to our problem,  $ \mu = p = P(vote = "for") = 0.69 $.
+
+This means if we would repeat the experiment one hundred times, we expect to observe 69 successes. 
+
+
+This result was achieved using Python 3.9 and the following code:
+
+\begin{lstlisting}
+from scipy.stats import bernoulli
+import numpy as np
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+#Dataset creation. Done manually as only one trial
+p_for = 0.69
+p_against = 0.31 #p_against = 1-p_for
+df = pd.DataFrame([[1,p_for],[0,p_against]])
+
+trace1 = go.Bar(x = df[0],y = df[1],width = 0.1,text = df[1], 
+    textposition = 'auto')
+fig = make_subplots(x_title = 'Number of Successes',y_title = 'P(X = x)')
+fig.add_trace(trace1)
+fig.show()
+fig.write_image("figures/1a.pdf")
+\end{lstlisting}
+
+\section{Poisson Distribution}
 
 
 
-b) The number of meteorites falling on an ocean in a given year can be modelled by a Poisson distribution with an expectation or $\lambda$=37. Explain why a Poisson distribution is a natural candidate for this phenomenon. Give a graphic showing the probability of one, two, three… meteorites falling (until the probability is less than 0.5\%). Calculate the median and variance and show them graphically on this graphic.
+The number of meteorites falling on an ocean in a given year can be modelled by a Poisson distribution with an expectation or $\lambda=37$. Explain why a Poisson distribution is a natural candidate for this phenomenon. Give a graphic showing the probability of one, two, three… meteorites falling (until the probability is less than 0.5\%). Calculate the median and variance and show them graphically on this graphic.
 
 
 c) Let $\Upsilon$ Y be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
