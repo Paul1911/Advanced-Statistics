@@ -18,8 +18,7 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 \FloatBarrier
 
 
-As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. 
-Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is 
+As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is 
 
 \begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
 \label{expvaluebernoulli}\end{equation}
@@ -54,7 +53,10 @@ fig.write_image("figures/1a.pdf")
 
 \section{Poisson Distribution}
 
+Assumed we try to model the number of meteorites falling on an ocean each year - why would a Poisson Distribution be a natural candidate?
 
+
+The Poisson distribution is a discrete probability distribution representing the number of events occurring in a defined period. It assumes the events occur with a known constant mean rate and that the events are independent of the time since the last event \cite[Chapter~4.6]{illowsky2018introductory}. By definition, a pure Poisson distribution assumes that the variance $\sigma^2$ is equal to the mean $\mu$: $\sigma^2 = \mu$. Citation By using a Gamma-Poisson distribution however can lift this restriction. 
 
 The number of meteorites falling on an ocean in a given year can be modelled by a Poisson distribution with an expectation or $\lambda=37$. Explain why a Poisson distribution is a natural candidate for this phenomenon. Give a graphic showing the probability of one, two, three… meteorites falling (until the probability is less than 0.5\%). Calculate the median and variance and show them graphically on this graphic.
 
