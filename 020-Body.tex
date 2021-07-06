@@ -1,9 +1,26 @@
 \chapter{Workbook Assignment 1: Basic Probabilities and Visualisations}
 
-\section{one}
+\section{Bernoulli Distribution}
 For each of the distributions below, please provide the requested graphics as well as the numeric results. In both cases, please provide how you realized these (calculations, code, steps…) and why it is the appropriate tools. Do not forget to include the scale of each graphics so a reader can read the numbers represented.
 
-\section{a) A vote with outcome for or against follows a Bernoulli distribution where P(vote="for")=0.27. Represent the proportion of “for” and “against” in this single Bernoulli trial using a graphics, a percentage. Can an expectation be calculated? Justify your answer.}
+\section{Bernoulli Distribution}
+
+Assumed a binary vote with outcome for or against is described by a Bernoulli distribution, with $P(vote = "for") = 0.69$. 
+Interpreting this as a one-trial Bernoulli experiment with the two outcomes for and against - represented by success and no success respectively - we can visualize it as displayed in figure~\ref{fig:1a}.
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=16cm]{pics/1a.pdf}
+\caption{Bernoulli Distribution of One Trial}
+\label{fig:1a}
+\end{figure}
+\FloatBarrier
+
+
+As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. 
+For a Bernoulli experiment, the expected value is defined as p where p is defined as the probability of success on the trial CITATION HOGG. The probability of success in our case is p = 0.69 which is therefore our expected value. This means if we would repeat the experiment one hundred times, we expect to observe 69 successes. 
+
 
 
 b) The number of meteorites falling on an ocean in a given year can be modelled by a Poisson distribution with an expectation or $\lambda$=37. Explain why a Poisson distribution is a natural candidate for this phenomenon. Give a graphic showing the probability of one, two, three… meteorites falling (until the probability is less than 0.5\%). Calculate the median and variance and show them graphically on this graphic.
