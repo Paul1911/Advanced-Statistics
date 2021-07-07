@@ -138,6 +138,45 @@ For density, check Page 19 in skript. basically the pdf of a distribution
 
 \chapter{Workbook Assignment 3: A Simple Parameter Estimation}	
 \chapter{Workbook Assignment 4: Hypothesis Test}	
+
+Assumed we are producing high-quality hammers in our factory and want to model the production quality. From the last 1000 produced hammers, we observed an average weight of $\bar{x}=971~g$ and a standard deviation of $s=42~g$.
+
+For modelling our distribution, the best proposal is a normal distribution. Hogg et al. \cite[Definition~3.4.1]{hogg} define the normal distribution as follows: 
+
+\begin{equation} 
+\frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace} {2\sigma ^2 }}}
+
+
+
+\label{eq:normaldist}
+\end{equation}
+
+It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$. In general, it has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution is assumed. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
+Other distributions are excluded as they are not applicable to this case or are less fitting. A Binomial Distribution for example is not applicable as it is binary, whereas the independent variable central to this exercise - hammer weight - is continuous. \\Describing the hammer weight as a repeated Bernoulli trial would also be an option to model the distribution, however such endeavor would firstly approximate a normal distribution as well and would secondly assume that the weight measurements are integer variables, whereas they are of continuous nature. \\
+Poisson \cite{bruce2017practical}
+Exponential
+Weibull 
+
+
+
+-propose model\\
+-list assumptions\\
+-list parameters\\
+-visualise model\\
+
+-formulate Hypotheses\\
+-what test\\
+-what decision rule\\
+-what p value/critical values\\
+-do calculations
+
+
+
+
+we can use the Central Limit Theorem as proven by Hogg et al. \cite[Theorem~5.3.1]{hogg}. 
+If we now want to model the weight distribution of our hammers, the best assumption is a normal distribution. The 1000 produced hammers can be interpreted as a random sample of the population of hammers with $n = 1000$. This $n$ is $>30$, so the central limit theorem can be applied here. 
+
+
 \chapter{Workbook Assignment 5: Sufficient Statistics}	
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
 
