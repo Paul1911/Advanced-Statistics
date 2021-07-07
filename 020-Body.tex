@@ -43,6 +43,7 @@ p_for = 0.69
 p_against = 0.31 #p_against = 1-p_for
 df = pd.DataFrame([[1,p_for],[0,p_against]])
 
+#Visualisation
 trace1 = go.Bar(x = df[0],y = df[1],width = 0.1,text = df[1], 
     textposition = 'auto')
 fig = make_subplots(x_title = 'Number of Successes',y_title = 'P(X = x)')
@@ -58,9 +59,24 @@ Assumed we try to model the number of meteorites falling on an ocean each year -
 
 The Poisson distribution is a discrete probability distribution representing the number of events occurring in a defined period. It assumes the events occur with a known constant mean rate and that the events are independent of the time since the last event \cite[Chapter~4.6]{illowsky2018introductory}. By definition, a pure Poisson distribution assumes that the variance $\sigma^2$ is equal to the mean $\mu$: $\sigma^2 = \mu$. Citation By using a Gamma-Poisson distribution however can lift this restriction. 
 
-The number of meteorites falling on an ocean in a given year can be modelled by a Poisson distribution with an expectation or $\lambda=37$. Explain why a Poisson distribution is a natural candidate for this phenomenon. Give a graphic showing the probability of one, two, three… meteorites falling (until the probability is less than 0.5\%). Calculate the median and variance and show them graphically on this graphic.
+The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as you cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. 
 
+Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in figure \ref{fig:1b}.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=16cm]{pics/1b.pdf}
+\caption{Poisson distribution of annual meteorite impacts with $\mu = 64$}
+\label{fig:1b}
+\end{figure}
+\FloatBarrier
+
+To ensure readability of the graphic, probabilities $<0.5$ percent are excluded. Additionally, the variance ($s^2 = 64.36$) is visualised as its root, the sample standard deviation $s$ ($s = 8.02$). Looking at mean ($\bar{x} = 64.01$) and median ($m = 64$), one can barely see a difference, which is to be expected as the distribution displayed is not skewed. 
+
+The calculations for this exercise were done in Python 3.9 with the following code: 
+insert code 
+
+\section{Exponential Distribuions}
 c) Let $\Upsilon$ Y be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
 0.3e−0.5 ��+0.6e−0.25 ��
 Find the probability that you need to wait between 2 and 4 hours to hear the owl, compute and display the probability density function graph as well as a histogram by the minute. Compute and display in the graphics the mean, variance, and quartiles of the waiting times.
@@ -120,8 +136,9 @@ For density, check Page 19 in skript. basically the pdf of a distribution
 
 
 
-
-
+\chapter{Workbook Assignment 3: A Simple Parameter Estimation}	
+\chapter{Workbook Assignment 4: Hypothesis Test}	
+\chapter{Workbook Assignment 5: Sufficient Statistics}	
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
 
 (following Hogg, McKean and Craig, exercise 11.2.2)
