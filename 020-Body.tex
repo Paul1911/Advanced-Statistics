@@ -148,7 +148,7 @@ For modelling our distribution, the best proposal is a normal distribution. Hogg
 \end{equation}
 
 
-It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution is assumed. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
+It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution is assumed - $ X~\sim~N(\mu, \sigma^2)$. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
 
 
 Other distributions are excluded as they are not applicable to this case or are less fitting. A Binomial Distribution for example is not applicable as it is binary, whereas the independent variable central to this exercise - hammer weight - is continuous. \\Describing the hammer weight as a repeated Bernoulli trial would also be an option to model the distribution, however such endeavor would firstly approximate a normal distribution as well and would secondly assume that the weight measurements are integer variables, whereas they are of continuous nature. \\
@@ -156,19 +156,31 @@ Another popular distribution, the Poisson distribution, is also not applicable a
 Using an exponential distribution to model the weight dispersion of hammer production would imply that we expect for example continuously increasing counts of hammers for increasing weights, which is not a senseful assumption. \\
 Consequently, we assume that the normal distribution is the best approximation.
 
-Using the normal distribution as approximation 
+Using the normal distribution as approximation implies accepting several assumptions. We assume that the model has the x-axis as an horizontal asymptote, that its mean is equal to its median, that its mode is the same as its mean and that it is symmetric about the mean \cite[Chapter~3.4]{hogg}.
+
+Using \ref{eq:normaldist} with the provided parameters of $\mu = 971$ and $\sigma = 42$, the following model is proposed: 
+
+\begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{7056 }}}
+\label{eq:normaldistadapted}
+\end{equation}
+
+In \ref{eq:normaldistadapted}, we furthermore assume that we can use the provided values for the sample average and the sample standard deviation as population parameters $\sigma$ and $\mu$ as the sample size $n = 1000$ is large. 
+
+Assumed we now test a new production system for hammer production. A random sample output of hammers of this new production output returns the following weights in grams: \\
+
+\begin{center}
+    1009, 1069, 966, 952, 1084, 897, 909, 995, 975, 983
+\end{center}
+
+How do we know if this new system's weight accuracy is better than the old system's accuracy, i.e. how do we find out whether the weight variance of the new system is lower than the variance of the old system?
+
+To answer this question, we have to perform a statistical test comparing the variances of both samples. For this, we need to define our hypotheses.  
 
 
 
--propose model\\
--list assumptions\\
-    mean = median 
-    vertical symmetry about mean
-    most observations at the mean
-    x axis as horizontal asymptote
-    \cite{hogg}
--list parameters\\
--visualise model\\
+
+
+
 
 -formulate Hypotheses\\
 -what test\\
