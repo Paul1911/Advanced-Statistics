@@ -74,8 +74,58 @@ Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in fig
 To ensure readability of the graphic, probabilities $<0.5$ percent are excluded. Additionally, the variance ($s^2 = 64.36$) is visualised as its root, the sample standard deviation $s$ ($s = 8.02$). Looking at mean ($\bar{x} = 64.01$) and median ($m = 64$), one can barely see a difference, which is to be expected as the distribution displayed is not skewed. 
 
 The calculations for this exercise were done in Python 3.9 with the following code: 
-insert code 
 
+\begin{lstlisting}
+from scipy.stats import poisson
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+#creating a sample with fixed random state
+size = 100000
+raw = pd.Series(data = poisson.rvs(64, size=size, random_state = 42))
+
+# calculating median, mean, variance, stdev
+median = raw.median()
+var = raw.var()  # sample assumed
+mean = raw.mean()
+stdev = np.sqrt(var)
+stdev_range = pd.DataFrame([[raw.mean() - stdev, 0.025],
+                            [raw.mean() + stdev, 0.025]])
+
+# Filter to only display probabilities >=0.5%
+df = pd.DataFrame(raw.value_counts())
+df[0] = df[0].div(size)
+df = df[df[0] >= 0.005]
+
+# Display measures
+print(var)
+print(stdev)
+print(mean)
+print(median)
+
+#creating graphic
+trace1 = go.Bar(x = df.index, y = df[0],showlegend = False)
+trace2 = go.Bar(x = [median], y = [0.055],width = [0.1], name = 'Median', 
+text = [median], textposition = 'outside')
+trace3 = go.Line(x = stdev_range[0], y = stdev_range[1], 
+name = 'Standard Deviation', text = ['-1 s', '+1 s'],
+mode ="lines+markers+text",textposition = "bottom center")
+trace4 = go.Bar(x = [mean], y = [0.025],width = [0.15], name = 'Mean', 
+text = [mean], textposition = 'outside')
+
+fig = make_subplots(x_title = 'Annual Meteorite Impacts',
+y_title = 'P(X = x)')
+fig.add_trace(trace1)
+fig.add_trace(trace2)
+fig.add_trace(trace4)
+fig.add_trace(trace3)
+fig['layout'].update(barmode = 'overlay')
+fig.show()
+
+fig.write_image("figures/1b.pdf")
+\end{lstlisting}
 \section{Exponential Distribuions}
 c) Let $\Upsilon$ Y be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
 0.3e−0.5 ��+0.6e−0.25 ��
@@ -122,7 +172,30 @@ The sample covariance is defined in Equation~\ref{eq:COV}, where $\bar{x} = E(X)
 
 Applying the formula to the provided data, $s_{xy} = 284.23$ can be observed. This indicates a positive relationship, but does not provide any information on its quality. 
 
-The calculations were done in Python, using NumPy, Pandas and Seaborn. The code for all calculations can be found in the appendices. 
+The calculations were done using Python 3.9 and the following code:
+
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+data = (1.754, 720.15), (-7.385, -260.86), (1.396, -340.56), (-3.304, 954.75),
+(-12.159, -370.12), (-6.767, -259.89), (1.233, 261.89), (-7.056, 400.72), 
+(-1.222, -94.33), (-0.722, -492.02), (-5.065, -789.42), (-9.333, 301.86),
+(7.27, -17.04), (-1.989, 257.91), (3.582, -229.89), (-1.2, -349.18), 
+(4.118, 226.05), (-1.834, -534.54), (-1.882, 610.91), (8.677, 70.11)
+data = pd.DataFrame(data)
+data.columns = ["X", "Y"]
+print("The variance of the variables is: \n{}".format(data.var()))
+print("The expectation value for the variables is: \n{}".format(data.mean()))
+print("The sample covariance is {}".format(data.cov().iloc[0,1]))
+
+data = data.set_index("X")
+
+sns.scatterplot(data = data, x = "X", y = "Y", color = "black").set(title = "Visualisation of X and Y Values")
+plt.savefig('./figures/2a.pdf')
+\end{lstlisting}
+
 
 \section{Ball throw}
 b) Consider that a ball is thrown with a random angle $THETA$[0,360) (in degrees) and a random radius $r$ element of [0,1] (in meters) both independent and uniform. Calculate the density of the variable $X$ and $Y$ (the cartesian coordinates of the point at angle $THETA$ and radius $r$) as well as their expectation and variance.
@@ -174,10 +247,14 @@ Assumed we now test a new production system for hammer production. A random samp
 
 How do we know if this new system's weight accuracy is better than the old system's accuracy, i.e. how do we find out whether the weight variance of the new system is lower than the variance of the old system?
 
-To answer this question, we have to perform a statistical test comparing the variances of both samples. For this, we need to define our hypotheses.  
-
-
-
+To answer this question, we have to perform a statistical test comparing the variances of both samples. For this, we need to define our hypotheses. Overall, we want to reject the idea that the new system does not provide any reduction in weight variance. The hypotheses are consequently 
+\\
+\begin{center}
+$H_0~~=~~ \sigma^2_2~<~\sigma^2_1$\\
+$H_1~~=~~ \sigma^2_2~\geq~\sigma^2_1$
+\end{center}
+\\
+where $\sigma^2_1$ is defined as the population variance of the old production system and $\sigma^2_2$ is defined as the population variance of the new production system.
 
 
 
