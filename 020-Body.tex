@@ -21,7 +21,7 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is 
 
 \begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
-\label{expvaluebernoulli}\end{equation}
+\label{eq:expvaluebernoulli}\end{equation}
 
 Applied to our problem,  $ \mu = p = P(vote = "for") = 0.69 $.
 
@@ -126,8 +126,43 @@ fig.show()
 
 fig.write_image("figures/1b.pdf")
 \end{lstlisting}
-\section{Exponential Distribuions}
-c) Let $\Upsilon$ Y be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
+
+\section{Exponential Distributions}
+Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by 
+
+\begin{equation}  f(Y > y) = 0.28e^{-0.5y} + 0.71e^{-0.25y}
+\label{eq:initcdf}
+\end{equation}
+Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \ref{eq:truecdf}, as this is the conventional expression \cite{deisenroth}. 
+
+\begin{equation}  f(Y \leq y) =1-( 0.28e^{-0.5y} + 0.71e^{-0.25y})
+\label{eq:truecdf}
+\end{equation}
+
+As $Y$ and $y$ are defined as time and time cannot be negative, the domain of the function we are interested in is $[0,+\infty]$.
+
+\begin{equation} f''(Y \leq y) = -\frac{71\mathrm{e}^{-\frac{x}{4}}}{1600}-\frac{7\mathrm{e}^{-\frac{x}{2}}}{100}
+\label{eq:secderivative}
+\end{equation}
+
+As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $f(Y = 0) = 0$ and $\lim_{y\to\infty} f(Y \leq y) = 1$. This is sufficient evidence to assume a cumulative distribution function of the family of exponential distributions. 
+
+VISUALISATION
+
+To calculate the probability function of the cumulative distribution function, we simply have to take the derivative of 
+
+
+Try for mean
+\begin{equation}  
+f(Y \leq y) = 1-( 0.28e^{-0.5y} + 0.71e^{-0.25y}) ~true~cdf 
+
+f'(Y \leq y) = \frac{71\mathrm{e}^{-\frac{x}{4}}+56\mathrm{e}^{-\frac{x}{2}}}{400}
+
+\label{eq:try}
+\end{equation}
+
+
+c) Let $Y$ be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
 0.3e−0.5 ��+0.6e−0.25 ��
 Find the probability that you need to wait between 2 and 4 hours to hear the owl, compute and display the probability density function graph as well as a histogram by the minute. Compute and display in the graphics the mean, variance, and quartiles of the waiting times.
 
