@@ -145,12 +145,40 @@ As $Y$ and $y$ are defined as time and time cannot be negative, the domain of th
 \label{eq:secderivative}
 \end{equation}
 
-As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $f(Y = 0) = 0$ and $\lim_{y\to\infty} f(Y \leq y) = 1$. This is sufficient evidence to assume a cumulative distribution function of the family of exponential distributions. 
+As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} f(Y \leq y) = 1$. Although $f(Y = 0) = 0.01$, we still suggest that the behaviour of the random variable can  be compared with the behaviour of an exponential function. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
 
 VISUALISATION
 
-To calculate the probability function of the cumulative distribution function, we simply have to take the derivative of 
 
+For any calculation regarding the probability to hear an owl within a time interval, we use the CDF. If we for example wanted to know $P(2 \leq Y \leq 4)$, the probability of needing to wait two to four hours to hear an owl, we would calculate it as in equation \ref{eq:prob24}.
+
+\begin{equation} P2 \leq Y \leq 4) = P(Y \leq 4) - P(Y \leq 2)
+\label{eq:prob24}
+\end{equation}
+%evtl explanation warum das so ist
+Applied to our distribution, we calculate
+\begin{equation} P(2 \leq Y \leq 4) =1-( 0.28e^{-2} + 0.71e^{-1}) -( 1-( 0.28e^{-1} + 0.71e^{-0.5})) = 0.234555
+\label{eq:probcalc24}
+\end{equation}
+Consequently, we can say that in 23.46 percent of cases, we have to wait in between two and four hours to hear an owl.
+\\
+
+Next to the CDF, we are also often interested in the corresponding probability density function (PDF). Generally, the PDF of a CDF $f(Y \leq y)$ is given by its first derivative \cite[Chapter~4.3]{montgomery2010applied}:
+\begin{equation}
+f(y) = \frac{df(Y \leq y)}{dy}
+\label{eq:firstderivative}
+\end{equation}
+For our CDF, the PDF is described by:
+\begin{equation}
+f(y) = \dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400}
+\label{eq:1st_derivative_applied}
+\end{equation}
+VISU OF PDF
+
+
+
+
+To calculate the probability function of the cumulative distribution function, we simply take the derivative of 
 
 Try for mean
 \begin{equation}  
