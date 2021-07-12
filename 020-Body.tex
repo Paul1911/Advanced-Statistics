@@ -18,7 +18,7 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 \FloatBarrier
 
 
-As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is 
+As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is: 
 
 \begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
 \label{eq:expvaluebernoulli}\end{equation}
@@ -128,7 +128,7 @@ fig.write_image("figures/1b.pdf")
 \end{lstlisting}
 
 \section{Exponential Distributions}
-Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by 
+Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by:
 
 \begin{equation}  f(Y > y) = 0.28e^{-0.5y} + 0.71e^{-0.25y}
 \label{eq:initcdf}
@@ -171,28 +171,45 @@ f(y) = \frac{df(Y \leq y)}{dy}
 For our CDF, the PDF is described by:
 \begin{equation}
 f(y) = \dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400}
-\label{eq:1st_derivative_applied}
+\label{eq:pdf}
 \end{equation}
 VISU OF PDF
 
+The graphical representation of the PDF in FIGURE also includes a mean value. This is calculated using equation \ref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
+\begin{equation}
+E(X) = \int^{+\infty}_{-\infty} x f(x) ~ dx
+\label{eq:ExpValueHogg}
+\end{equation}
+Conditions for this to be true are that equation \ref{eq:ExpValueHoggcondition} is fulfilled and that $X$ is a continuous random variable with $f(x)$ as its PDF.
+\begin{equation}
+\int^{+\infty}_{-\infty} |x| f(x) ~ dx < \infty
+\label{eq:ExpValueHoggcondition}
+\end{equation}
+By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, equation \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
+%
+\begin{equation}
+E(Y) = \int^{+\infty}_{0} y f(y) ~ dy = \int^{+\infty}_{0} y(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy = 3.4
+\label{eq:ExpValueCalculation}
+\end{equation}
+Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = 3.4$. 
+\\
 
-
-
-To calculate the probability function of the cumulative distribution function, we simply take the derivative of 
-
-Try for mean
-\begin{equation}  
-f(Y \leq y) = 1-( 0.28e^{-0.5y} + 0.71e^{-0.25y}) ~true~cdf 
-
-f'(Y \leq y) = \frac{71\mathrm{e}^{-\frac{x}{4}}+56\mathrm{e}^{-\frac{x}{2}}}{400}
-
-\label{eq:try}
+To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \ref{eq:HoggVariance}.
+\begin{equation}
+\sigma^2 = E(X^2) - \mu^2
+\label{eq:HoggVariance}
+\end{equation}
+%
+The variance of $Y$ calculated by \ref{eq:YVariance}, using the same assumptions as for equation \ref{eq:ExpValueCalculation}.
+\begin{equation}
+\sigma^2 = \int^{+\infty}_{0} y^2 f(y) ~ dy - \mu^2
+= \int^{+\infty}_{0} y^2(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy - 3.4^2 
+= 13.4
+\label{eq:YVariance}
 \end{equation}
 
+The variance is also depicted in FIGURE as its root, the standard deviation $\sigma$. 
 
-c) Let $Y$ be the random variable with the time to hear an owl from your room’s open window (in hours). Assume that the probability that you still need to wait to hear the owl after �� hours is:
-0.3e−0.5 ��+0.6e−0.25 ��
-Find the probability that you need to wait between 2 and 4 hours to hear the owl, compute and display the probability density function graph as well as a histogram by the minute. Compute and display in the graphics the mean, variance, and quartiles of the waiting times.
 
 \chapter{Workbook Assignment 2: Basic Probabilities and Visualizations }	
 
