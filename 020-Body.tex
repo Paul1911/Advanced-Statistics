@@ -203,7 +203,7 @@ To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2
 The variance of $Y$ calculated by \ref{eq:YVariance}, using the same assumptions as for equation \ref{eq:ExpValueCalculation}.
 \begin{equation}
 \sigma^2 = \int^{+\infty}_{0} y^2 f(y) ~ dy - \mu^2
-= \int^{+\infty}_{0} y^2(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy - 3.4^2 
+= \int^{+\infty}_{0} y^2(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy - 3.4^2
 = 13.4
 \label{eq:YVariance}
 \end{equation}
@@ -350,6 +350,7 @@ where $\sigma^2_1$ is defined as the population variance of the old production s
 
 we can use the Central Limit Theorem as proven by Hogg et al. \cite[Theorem~5.3.1]{hogg}. 
 If we now want to model the weight distribution of our hammers, the best assumption is a normal distribution. The 1000 produced hammers can be interpreted as a random sample of the population of hammers with $n = 1000$. This $n$ is $>30$, so the central limit theorem can be applied here. 
+
 
 
 \chapter{Workbook Assignment 5: Sufficient Statistics}	
