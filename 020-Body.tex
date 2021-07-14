@@ -130,68 +130,88 @@ fig.write_image("figures/1b.pdf")
 \section{Exponential Distributions}
 Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by:
 
-\begin{equation}  f(Y > y) = 0.28e^{-0.5y} + 0.71e^{-0.25y}
+\begin{equation}  f(Y > y) = 0.2\overline{8}\mathrm{e}^{-0.5y} + 0.7\overline{1}\mathrm{e}^{-0.25y}
 \label{eq:initcdf}
 \end{equation}
-Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \ref{eq:truecdf}, as this is the conventional expression \cite{deisenroth}. 
+To facilitate calculations, we reformulate the periodic numbers to fractions:
 
-\begin{equation}  f(Y \leq y) =1-( 0.28e^{-0.5y} + 0.71e^{-0.25y})
+\begin{equation}  f(Y > y) = \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y}
+\label{eq:initcdffractioned}
+\end{equation}
+
+Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \ref{eq:truecdf} to the conventional expression \cite{deisenroth}. 
+
+\begin{equation}  F_Y(y) = f(Y \leq y) =1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)
 \label{eq:truecdf}
 \end{equation}
 
 As $Y$ and $y$ are defined as time and time cannot be negative, the domain of the function we are interested in is $[0,+\infty]$.
 
-\begin{equation} f''(Y \leq y) = -\frac{71\mathrm{e}^{-\frac{x}{4}}}{1600}-\frac{7\mathrm{e}^{-\frac{x}{2}}}{100}
+\begin{equation} f'_Y(y) = f''(Y \leq y) = 
+\dfrac{-8\mathrm{e}^{-\frac{y}{4}}-13\mathrm{e}^{-\frac{y}{2}}}{180}
 \label{eq:secderivative}
 \end{equation}
 
-As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} f(Y \leq y) = 1$. Although $f(Y = 0) = 0.01$, we still suggest that the behaviour of the random variable can  be compared with the behaviour of an exponential function. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
+As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe $F_Y(y)$ of \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} F_Y(y)= 1$ and $F_Y(y)= 0$ for the support of $y$. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
 
-VISUALISATION
+\begin{figure}[h]
+\centering
+\includegraphics[width=16cm]{pics/1c1.pdf}
+\caption{Visualisation of provided and reformulated CDF of task assignment}
+\label{fig:1c1}
+\end{figure}
+\FloatBarrier
 
 
-For any calculation regarding the probability to hear an owl within a time interval, we use the CDF. If we for example wanted to know $P(2 \leq Y \leq 4)$, the probability of needing to wait two to four hours to hear an owl, we would calculate it as in equation \ref{eq:prob24}.
+For any calculation regarding the probability to hear an owl within a time interval, we use the CDF. If we for example wanted to know $P(2 \leq Y \leq 4)$, the probability of needing to wait two to four hours to hear an owl, we would calculate it as described in equation \ref{eq:prob24}.
 
-\begin{equation} P2 \leq Y \leq 4) = P(Y \leq 4) - P(Y \leq 2)
+\begin{equation} P(2 \leq Y \leq 4) = P(Y \leq 4) - P(Y \leq 2)
 \label{eq:prob24}
 \end{equation}
 %evtl explanation warum das so ist
 Applied to our distribution, we calculate
-\begin{equation} P(2 \leq Y \leq 4) =1-( 0.28e^{-2} + 0.71e^{-1}) -( 1-( 0.28e^{-1} + 0.71e^{-0.5})) = 0.234555
+\begin{equation} P (2 \leq Y \leq 4) =1-\left( \dfrac{13}{45}\mathrm{e}^{-2} + \dfrac{32}{45}\mathrm{e}^{-1}\right) -\left[ 1-\left( \dfrac{13}{45}\mathrm{e}^{-1} + \dfrac{32}{45}\mathrm{e}^{-0.5}\right)\right] 	\approx 0.23688696
 \label{eq:probcalc24}
 \end{equation}
-Consequently, we can say that in 23.46 percent of cases, we have to wait in between two and four hours to hear an owl.
+Consequently, we can say that in 23.69 percent of cases, we have to wait in between two and four hours to hear an owl.
 \\
 
-Next to the CDF, we are also often interested in the corresponding probability density function (PDF). Generally, the PDF of a CDF $f(Y \leq y)$ is given by its first derivative \cite[Chapter~4.3]{montgomery2010applied}:
+Next to the CDF, we are also often interested in the corresponding probability density function (PDF). Generally, the PDF $f_Y(y)$ of a CDF $F_Y(y)$ is given by its first derivative \cite[Chapter~4.3]{montgomery2010applied}:
 \begin{equation}
-f(y) = \frac{df(Y \leq y)}{dy}
+f_Y(y) = \frac{df(Y \leq y)}{dy}
 \label{eq:firstderivative}
 \end{equation}
 For our CDF, the PDF is described by:
 \begin{equation}
-f(y) = \dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400}
+f_Y(y) = \dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90}
 \label{eq:pdf}
 \end{equation}
-VISU OF PDF
 
-The graphical representation of the PDF in FIGURE also includes a mean value. This is calculated using equation \ref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=18cm]{pics/1c2.pdf}
+\caption{Visualisation of $f_Y(y)$ (PDF), the first two moments and applicable quartiles}
+\label{fig:1c2}
+\end{figure}
+\FloatBarrier
+
+The graphical representation of the PDF in figure \ref{fig:1c2} also includes the mean value. This is calculated using equation \ref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
 \begin{equation}
-E(X) = \int^{+\infty}_{-\infty} x f(x) ~ dx
+E(X) = \int^{+\infty}_{-\infty} x f_X(x) ~ dx
 \label{eq:ExpValueHogg}
 \end{equation}
-Conditions for this to be true are that equation \ref{eq:ExpValueHoggcondition} is fulfilled and that $X$ is a continuous random variable with $f(x)$ as its PDF.
+Conditions for this to be true are that equation \ref{eq:ExpValueHoggcondition} is fulfilled and that $X$ is a continuous random variable with $f_X(x)$ as its PDF.
 \begin{equation}
-\int^{+\infty}_{-\infty} |x| f(x) ~ dx < \infty
+\int^{+\infty}_{-\infty} |x| f_X(x) ~ dx < \infty
 \label{eq:ExpValueHoggcondition}
 \end{equation}
-By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, equation \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
+By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, equation \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
 %
 \begin{equation}
-E(Y) = \int^{+\infty}_{0} y f(y) ~ dy = \int^{+\infty}_{0} y(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy = 3.4
+E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90} \right) ~dy = \frac{154}{45} = 3.4\overline{2}
 \label{eq:ExpValueCalculation}
 \end{equation}
-Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = 3.4$. 
+Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = 3.4\overline{2}$. 
 \\
 
 To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \ref{eq:HoggVariance}.
@@ -200,15 +220,17 @@ To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2
 \label{eq:HoggVariance}
 \end{equation}
 %
-The variance of $Y$ calculated by \ref{eq:YVariance}, using the same assumptions as for equation \ref{eq:ExpValueCalculation}.
+The variance of $y$ is calculated by \ref{eq:YVariance}, using the same assumptions as for equation \ref{eq:ExpValueCalculation}.
 \begin{equation}
 \sigma^2 = \int^{+\infty}_{0} y^2 f(y) ~ dy - \mu^2
-= \int^{+\infty}_{0} y^2(\dfrac{71\mathrm{e}^{-\frac{y}{4}}+56\mathrm{e}^{-\frac{y}{2}}}{400})~dy - 3.4^2
-= 13.4
+= \int^{+\infty}_{0} \dfrac{y^2\left(16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}\right)}{90} - \left(\frac{154}{45}\right)^2
+= \frac{27044}{2025} \approx 13.3551
 \label{eq:YVariance}
 \end{equation}
 
-The variance is also depicted in FIGURE as its root, the standard deviation $\sigma$. 
+The variance is also depicted in figure \ref{fig:1c2}     as its root, the standard deviation $\sigma \approx 3.6545$. 
+
+Both figures \ref{fig:1c1} and \ref{fig:1c2} furthermore display the first three quartiles of the PDF. 
 
 
 \chapter{Workbook Assignment 2: Basic Probabilities and Visualizations }	
