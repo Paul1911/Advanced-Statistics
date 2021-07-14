@@ -73,7 +73,7 @@ Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in fig
 
 To ensure readability of the graphic, probabilities $<0.5$ percent are excluded. Additionally, the variance ($s^2 = 64.36$) is visualised as its root, the sample standard deviation $s$ ($s = 8.02$). Looking at mean ($\bar{x} = 64.01$) and median ($m = 64$), one can barely see a difference, which is to be expected as the distribution displayed is not skewed. 
 
-The calculations for this exercise were done in Python 3.9 with the following code: 
+The calculations for this exercise were done in python 3.9 using Jupyter notebooks with the following code: 
 
 \begin{lstlisting}
 from scipy.stats import poisson
@@ -145,14 +145,14 @@ Suspecting that such events are usually exponentially distributed, we reformulat
 \label{eq:truecdf}
 \end{equation}
 
-As $Y$ and $y$ are defined as time and time cannot be negative, the domain of the function we are interested in is $[0,+\infty]$.
+As $Y$ and $y$ are defined as time and time cannot be negative in this case, the domain of the function we are interested in is $[0,+\infty]$.
 
 \begin{equation} f'_Y(y) = f''(Y \leq y) = 
 \dfrac{-8\mathrm{e}^{-\frac{y}{4}}-13\mathrm{e}^{-\frac{y}{2}}}{180}
 \label{eq:secderivative}
 \end{equation}
 
-As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe $F_Y(y)$ of \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} F_Y(y)= 1$ and $F_Y(y)= 0$ for the support of $y$. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
+As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe $F_Y(y)$ of \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} F_Y(y)= 1$ and $F_Y(0)= 0$ for the support of $y$. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
 
 \begin{figure}[h]
 \centering
@@ -189,8 +189,8 @@ f_Y(y) = \dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90}
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=18cm]{pics/1c2.pdf}
-\caption{Visualisation of $f_Y(y)$ (PDF), the first two moments and applicable quartiles}
+\includegraphics[width=17cm]{pics/1c2.pdf}
+\caption{Visualisation of $f_Y(y)$ (PDF), the first two moments, and applicable quartiles}
 \label{fig:1c2}
 \end{figure}
 \FloatBarrier
@@ -205,13 +205,13 @@ Conditions for this to be true are that equation \ref{eq:ExpValueHoggcondition} 
 \int^{+\infty}_{-\infty} |x| f_X(x) ~ dx < \infty
 \label{eq:ExpValueHoggcondition}
 \end{equation}
-By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, equation \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
+By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, the left hand side of inequality \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
 %
 \begin{equation}
 E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90} \right) ~dy = \frac{154}{45} = 3.4\overline{2}
 \label{eq:ExpValueCalculation}
 \end{equation}
-Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = 3.4\overline{2}$. 
+Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = E(X) = 3.4\overline{2}$. 
 \\
 
 To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \ref{eq:HoggVariance}.
@@ -230,7 +230,237 @@ The variance of $y$ is calculated by \ref{eq:YVariance}, using the same assumpti
 
 The variance is also depicted in figure \ref{fig:1c2}     as its root, the standard deviation $\sigma \approx 3.6545$. 
 
-Both figures \ref{fig:1c1} and \ref{fig:1c2} furthermore display the first three quartiles of the PDF. 
+Both figures \ref{fig:1c1} and \ref{fig:1c2} furthermore display the first three quartiles of the PDF. Hogg et al. \cite[Chapter~1.7.1]{hogg} define the second quartile, the median, as the point dividing area under the PDF into two areas of equal size, which again are divided into two areas of equal size by the first and third quartile. As the CDF is the integral of the PDF and consequently by nature describes the area under the curve of the PDF, we can simply use equation \ref{eq:truecdf} for the calculation of quartiles. We know that each quartile has to cover a quarter of the area under the curve of PDF \ref{eq:pdf}. This means we can substitute 0.25, 0.5 and 0.75 for $(F_Y \leq y)$ in equation \ref{eq:truecdf} and solve for $y$ to get the quartiles. This is exemplarily done in equation \ref{eq:firstquartile} for the first quartile.
+
+\begin{equation}
+\begin{split}
+0.25 &
+=1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y_1} + \dfrac{32}{45}\mathrm{e}^{-0.25y_1} \right)\\
+y_1&=\ln \left(\frac{413529488+7788544\sqrt{2779}}{332150625}\right)\\
+y_1 &\approx 0.9087 
+\end{split}
+\label{eq:firstquartile}
+\end{equation}
+
+The second and third quartile can be calculated in the same way, resulting in $y_2 \approx 2.2430$ for the second quartile and $y_3 \approx 4.6588$ for the third quartile. The calculations can be found in the programming code. As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \ref{fig:1c1} as points whereas in figure \ref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \ref{eq:pdf}'s area under the curve to its left. 
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=17cm]{pics/1c4.pdf}
+\caption{Histogram of $f_Y(y)$ by minute}
+\label{fig:1c4}
+\end{figure}
+\FloatBarrier
+
+Lastly, figure \ref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would hear an owl approximately in five observations in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
+
+Calculations and visualisations were done in Jupyter notebooks using the following python code:
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import plotly.graph_objs as go
+from plotly.subplots import make_subplots
+import plotly
+import plotly.express as px
+
+# Define initial function as written in task assignment (P(Y>y))
+def func(y):  # cdf
+    return ((13 / 45) * np.exp(-0.5 * y) + (32 / 45) * np.exp(-0.25 * y))
+
+
+# Reformulate function so that you have a standard exponential function (P(Y<=y)
+def realfunc(y):  # cdf
+    return 1 - func(y)
+
+
+# Define pdf of realfunc(x)
+def pdf_realfunc(y):
+    # First derivative of realfunc(x) with respect to x
+    return (16 * np.exp(-y / 4) + 13 * np.exp(-y / 2)) / (90)
+
+
+# create datasets
+func_data = []
+realfunc_data = []
+pdf_realfunc_data = []
+
+for i in np.arange(0, 10, 1 / 60):
+    func_data.append([i, func(i)])
+    realfunc_data.append([i, realfunc(i)])
+    pdf_realfunc_data.append([i, pdf_realfunc(i)])
+
+# create dataframes
+func_df = pd.DataFrame(func_data)
+realfunc_df = pd.DataFrame(realfunc_data)
+pdf_realfunc_df = pd.DataFrame(pdf_realfunc_data)
+
+# Calculate mean value
+y_mean = pdf_realfunc(154 / 45)
+
+# Calculate quartiles
+# symbolab.com: "solve 0.25 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}
+# + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)"
+q1 = np.log(413529488 / 332150625 + 7788544 * np.sqrt(2779) / 332150625)
+
+# symbolab.com: "solve 0.5 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}
+# + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)"
+q2 = np.log(19342148 / 4100625 + 411904 * np.sqrt(2194) / 4100625)
+
+# symbolab.com: "solve 0.75 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}
+# + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)"
+q3 = np.log(216370448 / 4100625 + 5392384 * np.sqrt(1609) / 4100625)
+
+# Visualisation of initial function and reformulated function
+color = px.colors.qualitative.Plotly
+trace1 = go.Line(
+    x=func_df[0], 
+    y=func_df[1], 
+    name='P(Y > y)'
+)
+trace2 = go.Line(
+    x=realfunc_df[0], 
+    y=realfunc_df[1], 
+    name='P(Y <= y) (CDF)'
+)
+# Additionally, the PDF of P(Y <= y) can be displayed.
+#trace3 = go.Line(x=pdf_realfunc_df[0],
+#                y=pdf_realfunc_df[1],
+#                name='PDF of P(Y <= y)'
+#)
+trace9 = go.Scatter(
+    x=[q1],
+    y=[0.25],
+    showlegend=True,
+    name='Quartiles 1-3',
+    marker_color=color[9],
+    hovertext=['1st Quartile'],
+)
+trace10 = go.Scatter(
+    x=[q2],
+    y=[0.5],
+    showlegend=False,
+    marker_color=color[9],
+    hovertext=['2nd Quartile (Median)'],
+)
+trace11 = go.Scatter(
+    x=[q3],
+    y=[0.75],
+    showlegend=False,
+    marker_color=color[9],
+    hovertext=['3rd Quartile'],
+)
+# Mean (can also be displayed additionally)
+#trace6 = go.Scatter(x=[154 / 45], y=[y_mean], name='Mean')
+
+# Creating graphic
+fig = make_subplots(x_title="y (Hours)", y_title="Probability")
+fig.add_trace(trace1)
+fig.add_trace(trace2)
+#fig.add_trace(trace3)
+#fig.add_trace(trace6)
+fig.add_trace(trace9)
+fig.add_trace(trace10)
+fig.add_trace(trace11)
+fig.show()
+fig.write_image("figures/1c1.pdf")
+
+# Visualisation of PDF
+color = px.colors.qualitative.Plotly
+trace3 = go.Line(x=pdf_realfunc_df[0],
+                 y=pdf_realfunc_df[1],
+                 name='f_Y(y) (PDF)',
+                 marker_color=color[0])
+trace6 = go.Scatter(x=[154 / 45],
+                    y=[y_mean],
+                    showlegend=True,
+                    name='Mean',
+                    marker_color=color[2])
+trace7 = go.Bar(x=[154 / 45],
+                y=[y_mean],
+                showlegend=True,
+                name='Mean',
+                marker_color=color[2],
+                width=0.05)
+trace8 = go.Line(x=[154 / 45, 154 / 45 + 3.66],
+                 y=[y_mean, y_mean],
+                 name='Standard Deviation',
+                 text=['Mean', '+1 std. dev.'],
+                 mode="lines+markers+text",
+                 textposition="top center",
+                 fillcolor=color[3])
+trace9 = go.Bar(
+    x=[q1],
+    y=[pdf_realfunc(q1)],
+    showlegend=True,
+    name='Quartiles 1-3',
+    marker_color=color[9],
+    width=0.05,
+    text=['1st Quartile'],
+    textposition='outside',
+)
+trace10 = go.Bar(
+    x=[q2],
+    y=[pdf_realfunc(q2)],
+    showlegend=False,
+    marker_color=color[9],
+    width=0.05,
+    text=['2nd Quartile (Median)'],
+    textposition='outside',
+)
+trace11 = go.Bar(
+    x=[q3],
+    y=[pdf_realfunc(q3)],
+    showlegend=False,
+    marker_color=color[9],
+    width=0.05,
+    text=['3rd Quartile'],
+    textposition='outside',
+)
+
+fig = make_subplots(x_title="y (Hours)", y_title="P(y)")
+fig.add_trace(trace3)
+fig.add_trace(trace8)
+fig.add_trace(trace6)
+#fig.add_trace(trace7) #Additionally, this line can be uncommented
+#to get a vertical line for the mean for better visibility. This
+#might however be confusing as the mean is no indicator for area
+#under the curve, contrary to quartiles, which are displayed as
+#columns. Thus, this column was left in as comment, in case some-
+#one wants better visuability
+fig.add_trace(trace9)
+fig.add_trace(trace10)
+fig.add_trace(trace11)
+
+fig.update_layout(bargap=0.0, barmode='overlay')
+fig.update_traces(marker_line_width=0)
+
+fig.show()
+fig.write_image("figures/1c2.pdf")
+
+# Zooming in on the mean, if wanted
+#fig.update_xaxes(range=[3.37, 3.47])
+#fig.update_yaxes(range=[0.099, 0.105])
+#fig.show()
+#fig.write_image("figures/1c3.pdf")
+
+#Creating the Histogram per minute
+
+trace4 = go.Bar(x=pdf_realfunc_df[0],
+                y=pdf_realfunc_df[1] / 60,
+                name="Histogram of f_Y(y)",
+                marker_color='#3399FF')
+
+fig = make_subplots(x_title="y", y_title="P(y)")
+
+fig.add_trace(trace4)
+
+fig.update_layout(bargap=0.0, barmode='overlay')
+fig.update_traces(marker_line_width=0)
+
+fig.show()
+fig.write_image("figures/1c4.pdf")
+\end{lstlisting}
+
 
 
 \chapter{Workbook Assignment 2: Basic Probabilities and Visualizations }	
