@@ -242,7 +242,19 @@ y_1 &\approx 0.9087
 \label{eq:firstquartile}
 \end{equation}
 
-The second and third quartile can be calculated in the same way, resulting in $y_2 \approx 2.2430$ for the second quartile and $y_3 \approx 4.6588$ for the third quartile. The calculations can be found in the programming code. As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \ref{fig:1c1} as points whereas in figure \ref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \ref{eq:pdf}'s area under the curve to its left. 
+The second and third quartile can be calculated in the same way, resulting in $y_2 \approx 2.2430$ for the second quartile and $y_3 \approx 4.6588$ for the third quartile. The calculations were done using symbolab \cite{symbolab} with the following commands:
+\begin{lstlisting}
+solve 0.25 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
+\mathrm{e}^{-0.25y} \right)
+
+solve 0.5 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
+\mathrm{e}^{-0.25y} \right)
+
+solve 0.75 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
+\mathrm{e}^{-0.25y} \right)
+\end{lstlisting}
+
+As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \ref{fig:1c1} as points whereas in figure \ref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \ref{eq:pdf}'s area under the curve to its left. 
 
 \begin{figure}[h]
 \centering
