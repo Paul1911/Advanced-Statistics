@@ -536,13 +536,31 @@ print("The sample covariance is {}".format(data.cov().iloc[0,1]))
 
 data = data.set_index("X")
 
-sns.scatterplot(data = data, x = "X", y = "Y", color = "black").set(title = "Visualisation of X and Y Values")
+sns.scatterplot(data = data, x = "X", y = "Y", color = "black").set(
+    title = "Visualisation of X and Y Values")
 plt.savefig('./figures/2a.pdf')
 \end{lstlisting}
 
 
-\section{Ball throw}
-b) Consider that a ball is thrown with a random angle $THETA$[0,360) (in degrees) and a random radius $r$ element of [0,1] (in meters) both independent and uniform. Calculate the density of the variable $X$ and $Y$ (the cartesian coordinates of the point at angle $THETA$ and radius $r$) as well as their expectation and variance.
+\section{Transformations}
+Assumed we have a ball being thrown at a random angle $THETA$ [0,360) (in degrees) and a random radius $r$ $\in$ [0,1] (in meters) both independent and uniform. What is the density of the variables $X$ and $Y$, which are the cartesion coordinates of the point at angle $THETA$ and radius $r$? And, furthermore, what is their expectation and variance?
+
+Following Illowsky and Dean \cite[Chapter~5.2]{illowsky2018introductory}, the pdf of an uniformly distributed variable is $f(x) = \frac{1}{b-a}$ for $a \leq x \leq b$. 
+
+As $\theta,r \sim \mathcal{U}$, we can formulate the marginal distributions as described in \ref{eq:theta_untransformed} (using radiants) and \ref{eq:r_untransformed}.
+\begin{equation}
+\begin{split}
+f(\theta) = \frac{1}{2\pi} ~~~~~~~~ \theta \in [0,2\pi)
+\end{split}
+\label{eq:theta_untransformed}
+\end{equation}
+\begin{equation}
+\begin{split}
+f(r) = 1 ~~~~~~~~ r\in[0,1]
+\end{split}
+\label{eq:r_untransformed}
+\end{equation}
+
 
 Notes:
 Only possible by transformation. if you know x yy dirstribution 
