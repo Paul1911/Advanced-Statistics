@@ -543,23 +543,47 @@ plt.savefig('./figures/2a.pdf')
 
 
 \section{Transformations}
-Assumed we have a ball being thrown at a random angle $THETA$ [0,360) (in degrees) and a random radius $r$ $\in$ [0,1] (in meters) both independent and uniform. What is the density of the variables $X$ and $Y$, which are the cartesion coordinates of the point at angle $THETA$ and radius $r$? And, furthermore, what is their expectation and variance?
+Assumed we have a ball being thrown at a random angle $\theta$ [0,360) (in degrees) and a random radius $r$ $\in$ [0,1] (in meters) both independent and uniform. What is the density of the variables $X$ and $Y$, which are the cartesion coordinates of the point at angle $\theta$ and radius $r$? And, furthermore, what is their expectation and variance?
 
 Following Illowsky and Dean \cite[Chapter~5.2]{illowsky2018introductory}, the pdf of an uniformly distributed variable is $f(x) = \frac{1}{b-a}$ for $a \leq x \leq b$. 
 
 As $\theta,r \sim \mathcal{U}$, we can formulate the marginal distributions as described in \ref{eq:theta_untransformed} (using radiants) and \ref{eq:r_untransformed}.
+
 \begin{equation}
-\begin{split}
-f(\theta) = \frac{1}{2\pi} ~~~~~~~~ \theta \in [0,2\pi)
-\end{split}
+f_\Theta(\theta) = 
+\begin{cases} 
+      \frac{1}{2\pi} & for~\theta \in [0,2\pi)\\
+      0&elsewhere
+   \end{cases}
 \label{eq:theta_untransformed}
 \end{equation}
+
 \begin{equation}
-\begin{split}
-f(r) = 1 ~~~~~~~~ r\in[0,1]
-\end{split}
+f_R(r) = 
+\begin{cases} 
+      1 & for~r\in[0,1]\\
+      0&elsewhere
+   \end{cases}
 \label{eq:r_untransformed}
 \end{equation}
+
+Joining these distributions returns the following joint pdf:
+\begin{equation}
+\begin{split}
+f_{\Theta R}(\theta,r) = 
+\begin{cases} 
+      \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
+      0&elsewhere
+   \end{cases}
+\end{split}
+\label{eq:joint_pdf_untransformed}
+\end{equation}
+
+Following Dawkins \cite{dawkins}, we can transform to Cartesian $x$ and $y$ using $x = rcos(\theta)$ and $y=rsin(\theta)$. For the transformation, we furthermore need their inverses, which calculate to $r = \sqrt{x^2 + y^2}$, $\theta = arctan(\frac{y}{x})$. 
+
+Can we say $(x,y) = g^{-1}(r,\theta) = (\sqrt{x^2 + y^2},arctan(\frac{y}{x}))$, following the script page 96? No we cannot
+
+\boldsymbol{How to get to the jacobian?}
 
 
 Notes:
