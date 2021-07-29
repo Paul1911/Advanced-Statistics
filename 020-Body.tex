@@ -598,7 +598,7 @@ For density, check Page 19 in skript. basically the pdf of a distribution
 \chapter{Workbook Assignment 3: A Simple Parameter Estimation}	
 \chapter{Workbook Assignment 4: Hypothesis Test}	
 
-Assumed we are producing high-quality hammers in our factory and want to model the production quality. From the last 1000 produced hammers, we observed an average weight of $\bar{x}=971~g$ and a standard deviation of $s=42~g$.
+Assumed we are producing high-quality hammers in our factory and want to model the production quality. From the last 1000 produced hammers, we observed an average weight of $\mu_1=971~g$ and a standard deviation of $\sigma_1 = 42~g$. As $n = 1000$, we assume that we can treat the point estimates for the mean and the standard deviation as population parameters.
 
 For modelling our distribution, the best proposal is a normal distribution. Hogg et al. \cite[Definition~3.4.1]{hogg} define the normal distribution as follows: 
 
@@ -607,7 +607,7 @@ For modelling our distribution, the best proposal is a normal distribution. Hogg
 \end{equation}
 
 
-It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution is assumed - $ X~\sim~N(\mu, \sigma^2)$. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
+It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution of our random variable $X$ is assumed - $ X~\sim~N(\mu, \sigma^2)$. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
 
 
 Other distributions are excluded as they are not applicable to this case or are less fitting. A Binomial Distribution for example is not applicable as it is binary, whereas the independent variable central to this exercise - hammer weight - is continuous. \\Describing the hammer weight as a repeated Bernoulli trial would also be an option to model the distribution, however such endeavor would firstly approximate a normal distribution as well and would secondly assume that the weight measurements are integer variables, whereas they are of continuous nature. \\
@@ -617,13 +617,13 @@ Consequently, we assume that the normal distribution is the best approximation.
 
 Using the normal distribution as approximation implies accepting several assumptions. We assume that the model has the x-axis as an horizontal asymptote, that its mean is equal to its median, that its mode is the same as its mean and that it is symmetric about the mean \cite[Chapter~3.4]{hogg}.
 
-Using \ref{eq:normaldist} with the provided parameters of $\mu = 971$ and $\sigma = 42$, the following model is proposed: 
+Using \ref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\sigma_1 = 42$, the following model is proposed: 
 
-\begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{7056 }}}
+\begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{3528 }}}
 \label{eq:normaldistadapted}
 \end{equation}
 
-In \ref{eq:normaldistadapted}, we furthermore assume that we can use the provided values for the sample average and the sample standard deviation as population parameters $\sigma$ and $\mu$ as the sample size $n = 1000$ is large. 
+
 
 Assumed we now test a new production system for hammer production. A random sample output of hammers of this new production output returns the following weights in grams: \\
 
@@ -636,13 +636,42 @@ How do we know if this new system's weight accuracy is better than the old syste
 To answer this question, we have to perform a statistical test comparing the variances of both samples. For this, we need to define our hypotheses. Overall, we want to reject the idea that the new system does not provide any reduction in weight variance. The hypotheses are consequently 
 \\
 \begin{center}
-$H_0~~=~~ \sigma^2_2~<~\sigma^2_1$\\
-$H_1~~=~~ \sigma^2_2~\geq~\sigma^2_1$
+$H_0~~:~~ \sigma^2_2~=~\sigma^2_1$\\ 
+$H_1~~:~~ \sigma^2_2~>~\sigma^2_1$
 \end{center}
 \\
 where $\sigma^2_1$ is defined as the population variance of the old production system and $\sigma^2_2$ is defined as the population variance of the new production system.
 
+Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi square distribution is needed for inferences on variances. To test our sample variance $s_2^2 = \frac{32594.9}{9}$ against the variance $\sigma^2_1 = 42^2 = 1764$, we can now use the Chi Square Test or the F-Test. As we earlier assumed that $\sigma_1$ is the population variance instead of a sample variance, we do not need to rely on F-Test and can work with the Chi Square Test. The hypotheses can then be formulated as 
+\\
+\begin{center}
+$H_0~~:~~ \sigma^2_2~=~1764$\\ 
+$H_1~~:~~ \sigma^2_2~>~1764$
+\end{center}
+\\
+Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the Chi Square test statistic is given by 
 
+\begin{equation}
+\chi^2 = \frac{(n-1)s_2^2}{\sigma_1^2}
+\label{eq:chisquarestatistic}
+\end{equation}
+
+with the decision rule of rejecting $H_0$ if 
+\\
+\begin{equation}
+\chi^2 \geq \chi^2_{1-\alpha,n-1}
+\label{eq:decisionrule}
+\end{equation}
+\\
+
+where $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. 
+
+
+Inserting the sample figures into \ref{eq:chisquarestatistic}, we observe 
+\begin{equation}
+\chi^2 = \frac{(10-1) \cdot \frac{32594.9}{9}}{1764} = \frac{32594.9}{1764} \approx 18.48
+\label{eq:chisqstatcalc}
+\end{equation}
 
 
 -formulate Hypotheses\\
@@ -660,6 +689,13 @@ If we now want to model the weight distribution of our hammers, the best assumpt
 
 
 \chapter{Workbook Assignment 5: Sufficient Statistics}	
+
+Introduction to Mathematical Statistics and Its Applications: Pearson New International Edition PDF 
+5. Estimation
+sufficient estimators
+Übung 5.6.5
+
+
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
 
 (following Hogg, McKean and Craig, exercise 11.2.2)
