@@ -30,7 +30,7 @@ This means if we would repeat the experiment one hundred times, we expect to obs
 
 This result was achieved using Python 3.9 and the following code:
 
-\begin{lstlisting}
+\begin{minted}{python}
 from scipy.stats import bernoulli
 import numpy as np
 import pandas as pd
@@ -50,7 +50,7 @@ fig = make_subplots(x_title = 'Number of Successes',y_title = 'P(X = x)')
 fig.add_trace(trace1)
 fig.show()
 fig.write_image("figures/1a.pdf")
-\end{lstlisting}
+\end{minted}
 
 \section{Poisson Distribution}
 
@@ -75,7 +75,7 @@ To ensure readability of the graphic, probabilities $<0.5$ percent are excluded.
 
 The calculations for this exercise were done in python 3.9 using Jupyter notebooks with the following code: 
 
-\begin{lstlisting}
+\begin{minted}{python}
 from scipy.stats import poisson
 import numpy as np
 import pandas as pd
@@ -125,7 +125,7 @@ fig['layout'].update(barmode = 'overlay')
 fig.show()
 
 fig.write_image("figures/1b.pdf")
-\end{lstlisting}
+\end{minted}
 
 \section{Exponential Distributions}
 Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by:
@@ -243,7 +243,7 @@ y_1 &\approx 0.9087
 \end{equation}
 
 The second and third quartile can be calculated in the same way, resulting in $y_2 \approx 2.2430$ for the second quartile and $y_3 \approx 4.6588$ for the third quartile. The calculations were done using symbolab \cite{symbolab} with the following commands:
-\begin{lstlisting}
+\begin{minted}{python}
 solve 0.25 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 \mathrm{e}^{-0.25y} \right)
 
@@ -252,7 +252,7 @@ solve 0.5 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 
 solve 0.75 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 \mathrm{e}^{-0.25y} \right)
-\end{lstlisting}
+\end{minted}
 
 As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \ref{fig:1c1} as points whereas in figure \ref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \ref{eq:pdf}'s area under the curve to its left. 
 
@@ -267,7 +267,7 @@ As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we t
 Lastly, figure \ref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would hear an owl approximately in five observations in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
 
 Calculations and visualisations were done in Jupyter notebooks using the following python code:
-\begin{lstlisting}
+\begin{minted}{python}
 import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
@@ -471,7 +471,7 @@ fig.update_traces(marker_line_width=0)
 
 fig.show()
 fig.write_image("figures/1c4.pdf")
-\end{lstlisting}
+\end{minted}
 
 
 
@@ -518,7 +518,7 @@ Applying the formula to the provided data, $s_{xy} = 284.23$ can be observed. Th
 
 The calculations were done using Python 3.9 and the following code:
 
-\begin{lstlisting}
+\begin{minted}{python}
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -539,11 +539,11 @@ data = data.set_index("X")
 sns.scatterplot(data = data, x = "X", y = "Y", color = "black").set(
     title = "Visualisation of X and Y Values")
 plt.savefig('./figures/2a.pdf')
-\end{lstlisting}
+\end{minted}
 
 
 \section{Transformations}
-Assumed we have a ball being thrown at a random angle $\theta$ [0,360) (in degrees) and a random radius $r$ $\in$ [0,1] (in meters) both independent and uniform. What is the density of the variables $X$ and $Y$, which are the cartesion coordinates of the point at angle $\theta$ and radius $r$? And, furthermore, what is their expectation and variance?
+Assumed we have a ball being thrown at a random angle $\theta$ [0,360) (in degrees) and a random radius $r$ $\in$ [0,1] (in meters) both independent and uniform. What is the density of the variables $X$ and $Y$, which are the Cartesian coordinates of the point at angle $\theta$ and radius $r$? And, furthermore, what is their expectation and variance?
 
 Following Illowsky and Dean \cite[Chapter~5.2]{illowsky2018introductory}, the pdf of an uniformly distributed variable is $f(x) = \frac{1}{b-a}$ for $a \leq x \leq b$. 
 
@@ -570,7 +570,7 @@ f_R(r) =
 Joining these distributions returns the following joint pdf:
 \begin{equation}
 \begin{split}
-f_{\Theta R}(\theta,r) = 
+f_{R,\Theta}(r,\theta) = 
 \begin{cases} 
       \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
       0&elsewhere
@@ -579,18 +579,91 @@ f_{\Theta R}(\theta,r) =
 \label{eq:joint_pdf_untransformed}
 \end{equation}
 
-Following Dawkins \cite{dawkins}, we can transform to Cartesian $x$ and $y$ using $x = rcos(\theta)$ and $y=rsin(\theta)$. For the transformation, we furthermore need their inverses, which calculate to $r = \sqrt{x^2 + y^2}$, $\theta = arctan(\frac{y}{x})$. 
+Following Dawkins \cite{dawkins}, we can transform to Cartesian $x$ and $y$ using $x = rcos(\theta)$ and $y=rsin(\theta)$. For the transformation, we furthermore need their inverses, which calculate to 
 
-Can we say $(x,y) = g^{-1}(r,\theta) = (\sqrt{x^2 + y^2},arctan(\frac{y}{x}))$, following the script page 96? No we cannot
+\begin{gather*}
+x^2=r^2cos^2(\theta) \quad y^2=r^2sin^2(\theta)\\
+x^2+y^2=r^2cos^2(\theta)sin^2(\theta)\\
+x^2+y^2=r^2\\
+r = \sqrt{x^2+y^2} = u_1(x,y)\\
+\label{eq:r^-1}
+\end{gather*}
+and
+\begin{gather*}
+ r = \frac{x}{cos(\theta)} \quad r = \frac{y}{sin(\theta)}\\
+ \frac{x}{cos(\theta)} = \frac{y}{sin(\theta)}\\
+ \frac{x}{cos(\theta)} = \frac{y}{sin(\theta)}\\
+ \frac{y}{x} = \frac{cos(\theta)}{sin(\theta)}\\
+ \frac{y}{x} = tan(\theta)\\
+ \theta = tan^{-1}(\frac{y}{x}) = u_2(x,y)
+\label{eq:theta^-1}
+\end{gather*}
 
-\boldsymbol{How to get to the jacobian?}
+Using the transformation theorem proved in Hogg et al. \cite[Chapter~2.7]{hogg}, we get
+ 
+\begin{equation}
+\begin{split}
+f_{X,Y}(x,y) = f_{R,\Theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot |J|
+%f_{X,Y}(x,y) = f_{r,\theta}\left(u_1,u_2\right)\right) \cdot |J|
+\end{split}
+\label{eq:transtheorem}
+\end{equation}
+where 
+\begin{equation}
+\begin{split}
+|J| =
+\left|
+\begin{matrix}
+\frac{\partial u_1}{\partial x} & 
+\frac{\partial u_1}{\partial y}  \\[2ex] % <-- 1ex more space between rows of matrix
+\frac{\partial u_2}{\partial x} & 
+\frac{\partial u_2}{\partial y}  \\[2ex]
+\end{matrix}
+\right|
+= 
+\left|
+\begin{matrix}
+\frac{x}{\sqrt{x^2+y^2}}& 
+\frac{y}{\sqrt{x^2+y^2}}  \\[2ex] % <-- 1ex more space between rows of matrix
+-\frac{y}{y^2+x^2} & 
+\frac{x}{y^2+x^2}  \\[2ex]
+\end{matrix}
+\right|\\[2ex]
+= \frac{x}{\sqrt{x^2+y^2}} \cdot \frac{x}{y^2+x^2} -\frac{y}{\sqrt{x^2+y^2}}  \cdot \left(-\frac{y}{y^2+x^2}\right)\\[2ex]
+= \frac{x^2+y^2}{(x^2+y^2)^{3/2}}\\[2ex]
+=\frac{1}{\sqrt{x^2+y^2}}
+\end{split}
+\label{eq:jacobiandet}
+\end{equation}
+
+with the derivatives being calculated by Symbolab \cite{symbolab} with the following commands:
+\begin{lstlisting}
+\frac{\partial }{\partial \:x}\left(\sqrt{x^2+y^2}\right)
+\frac{\partial }{\partial \:y}\left(\sqrt{x^2+y^2}\right)
+\frac{\partial }{\partial \:x}\left(tan^{-1}\left(\frac{y}{x}\right)\right)
+\frac{\partial }{\partial \:y}\left(tan^{-1}\left(\frac{y}{x}\right)\right)
+\end{lstlisting}
+
+Substituting \ref{eq:jacobiandet} into \ref{eq:transtheorem}, we get
+\begin{equation}
+\begin{split}
+f_{X,Y}(x,y) = f_{r,\theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot \frac{1}{\sqrt{x^2+y^2}}\\[2ex]
+f_{X,Y}(x,y) = \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqrt{x^2+y^2}}
+%\begin{cases} 
+%      \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
+%      0&elsewhere
+%   \end{cases}
+\end{split}
+\label{eq:transtheoremcomplete}
+\end{equation}
+
+which represents the joint PDF of $X$ and $Y$.\\
+To calculate their individual densities, the marginal distributions are needed. 
 
 
-Notes:
-Only possible by transformation. if you know x yy dirstribution 
-Monte carlo approach can solve this. (complicated)
-Transformation theorem thingy 3.last chapter
-For density, check Page 19 in skript. basically the pdf of a distribution
+
+
+
 
 
 
@@ -600,14 +673,15 @@ For density, check Page 19 in skript. basically the pdf of a distribution
 
 Assumed we are producing high-quality hammers in our factory and want to model the production quality. From the last 1000 produced hammers, we observed an average weight of $\mu_1=971~g$ and a standard deviation of $\sigma_1 = 42~g$. As $n = 1000$, we assume that we can treat the point estimates for the mean and the standard deviation as population parameters.
 
-For modelling our distribution, the best proposal is a normal distribution. Hogg et al. \cite[Definition~3.4.1]{hogg} define the normal distribution as follows: 
+Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution $N(\mu, \sigma^2)$ is assumed.
+Hogg et al. \cite[Definition~3.4.1]{hogg} define the normal distribution as follows: 
 
 \begin{equation} \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace}{2\sigma ^2 }}}
 \label{eq:normaldist}
 \end{equation}
 
 
-It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data. Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution of our random variable $X$ is assumed - $ X~\sim~N(\mu, \sigma^2)$. This assumption of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
+It depends on two parameters, the population standard deviation $\sigma$ and the population mean $\mu$, which both are provided. In general, any normal distribution has a bell-shaped form, indicating that it is symmetric and not skewed to any side. Apart from the mean and the standard deviation, we are not provided any further data.  The assumption of such model of course does not hold anymore if the data of the 1000 produced hammers introduces any kind of bias or skewness. 
 
 
 Other distributions are excluded as they are not applicable to this case or are less fitting. A Binomial Distribution for example is not applicable as it is binary, whereas the independent variable central to this exercise - hammer weight - is continuous. \\Describing the hammer weight as a repeated Bernoulli trial would also be an option to model the distribution, however such endeavor would firstly approximate a normal distribution as well and would secondly assume that the weight measurements are integer variables, whereas they are of continuous nature. \\
@@ -625,7 +699,7 @@ Using \ref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\si
 
 
 
-Assumed we now test a new production system for hammer production. A random sample output of hammers of this new production output returns the following weights in grams: \\
+Assumed a new production system for hammer production is tested. A random sample output of hammers of this new production output returns the following weights in grams: \\
 
 \begin{center}
     1009, 1069, 966, 952, 1084, 897, 909, 995, 975, 983
@@ -633,22 +707,22 @@ Assumed we now test a new production system for hammer production. A random samp
 
 How do we know if this new system's weight accuracy is better than the old system's accuracy, i.e. how do we find out whether the weight variance of the new system is lower than the variance of the old system?
 
-To answer this question, we have to perform a statistical test comparing the variances of both samples. For this, we need to define our hypotheses. Overall, we want to reject the idea that the new system does not provide any reduction in weight variance. The hypotheses are consequently 
-\\
+To answer this question, we have to perform a statistical test comparing the variances of both samples, which requires hypotheses. Overall, we expect that the new system reduces weight variance and is more accurate. The hypotheses are consequently 
+
 \begin{center}
 $H_0~~:~~ \sigma^2_2~=~\sigma^2_1$\\ 
-$H_1~~:~~ \sigma^2_2~>~\sigma^2_1$
+$H_1~~:~~ \sigma^2_2~<~\sigma^2_1$
 \end{center}
-\\
+
 where $\sigma^2_1$ is defined as the population variance of the old production system and $\sigma^2_2$ is defined as the population variance of the new production system.
 
-Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi square distribution is needed for inferences on variances. To test our sample variance $s_2^2 = \frac{32594.9}{9}$ against the variance $\sigma^2_1 = 42^2 = 1764$, we can now use the Chi Square Test or the F-Test. As we earlier assumed that $\sigma_1$ is the population variance instead of a sample variance, we do not need to rely on F-Test and can work with the Chi Square Test. The hypotheses can then be formulated as 
-\\
+Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi square distribution is needed for inferences on variances. To test our sample variance $s_2^2 = \frac{32594.9}{9} \approx 3621.66 $ against the variance $\sigma^2_1 = 42^2 = 1764$, we can now use the Chi Square Test or the F-Test. As we earlier assumed that $\sigma_1$ is the population variance instead of a sample variance, we do not need to rely on F-Test and can work with the Chi Square Test. The hypotheses can then be formulated as 
+
 \begin{center}
 $H_0~~:~~ \sigma^2_2~=~1764$\\ 
-$H_1~~:~~ \sigma^2_2~>~1764$
+$H_1~~:~~ \sigma^2_2~<~1764$
 \end{center}
-\\
+
 Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the Chi Square test statistic is given by 
 
 \begin{equation}
@@ -659,12 +733,11 @@ Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the Chi Sq
 with the decision rule of rejecting $H_0$ if 
 \\
 \begin{equation}
-\chi^2 \geq \chi^2_{1-\alpha,n-1}
+\chi^2 \leq \chi^2_{1-\alpha,n-1}
 \label{eq:decisionrule}
 \end{equation}
 \\
-
-where $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. 
+where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses wich an error in this test might incur are quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
 
 
 Inserting the sample figures into \ref{eq:chisquarestatistic}, we observe 
@@ -672,6 +745,33 @@ Inserting the sample figures into \ref{eq:chisquarestatistic}, we observe
 \chi^2 = \frac{(10-1) \cdot \frac{32594.9}{9}}{1764} = \frac{32594.9}{1764} \approx 18.48
 \label{eq:chisqstatcalc}
 \end{equation}
+
+Using the lower-tail critical values of chi-square distribution of the Engineering Statistics Handbook \cite{nist}, the critical value is approximated by 
+\\
+\begin{equation}
+\chi^2_{0.95,9}\approx 3.33
+\label{eq:criticalvalue}
+\end{equation}
+\\
+with the corresponding p-value of
+\\
+\begin{equation}
+p = P(\chi^2 < 18.48) = 1-0.03 = 0.97
+\label{eq:pvalue}
+\end{equation}
+\\
+using the p-Value Calculator for a Chi-Square Test \cite{freepvalue}. 
+
+Consequently, as 
+\\
+\begin{equation}
+\chi^2 \nleq \chi^2_{0.95,9}
+\label{eq:criticalvalue}
+\end{equation}
+\\
+or, put differently, the p-value is much larger than our $\alpha$, we can not reject $H_0$ and can not say that the new model makes more constant weights. Looking at the large initial difference in variances $s_2^2 \approx 3621.66 $ and $\sigma^2_1 = 1764$, this result is not too surprising. 
+
+
 
 
 -formulate Hypotheses\\
