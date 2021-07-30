@@ -581,23 +581,23 @@ f_{R,\Theta}(r,\theta) =
 
 Following Dawkins \cite{dawkins}, we can transform to Cartesian $x$ and $y$ using $x = rcos(\theta)$ and $y=rsin(\theta)$. For the transformation, we furthermore need their inverses, which calculate to 
 
-\begin{gather*}
-x^2=r^2cos^2(\theta) \quad y^2=r^2sin^2(\theta)\\
-x^2+y^2=r^2cos^2(\theta)sin^2(\theta)\\
-x^2+y^2=r^2\\
-r = \sqrt{x^2+y^2} = u_1(x,y)\\
+\begin{align*}
+x^2=r^2cos^2(\theta)& \qquad y^2=r^2sin^2(\theta)\\
+x^2+y^2&=r^2cos^2(\theta)sin^2(\theta)\\
+x^2+y^2&=r^2\\
+r &= \sqrt{x^2+y^2} = u_1(x,y)\\
 \label{eq:r^-1}
-\end{gather*}
+\end{align*}
 and
-\begin{gather*}
- r = \frac{x}{cos(\theta)} \quad r = \frac{y}{sin(\theta)}\\
- \frac{x}{cos(\theta)} = \frac{y}{sin(\theta)}\\
- \frac{x}{cos(\theta)} = \frac{y}{sin(\theta)}\\
- \frac{y}{x} = \frac{cos(\theta)}{sin(\theta)}\\
- \frac{y}{x} = tan(\theta)\\
- \theta = tan^{-1}(\frac{y}{x}) = u_2(x,y)
+\begin{align*}
+ r = \frac{x}{cos(\theta)}& \qquad r = \frac{y}{sin(\theta)}\\
+ \frac{x}{cos(\theta)} &= \frac{y}{sin(\theta)}\\
+ \frac{x}{cos(\theta)} &= \frac{y}{sin(\theta)}\\
+ \frac{y}{x} &= \frac{cos(\theta)}{sin(\theta)}\\
+ \frac{y}{x} &= tan(\theta)\\
+ \theta &= tan^{-1}(\frac{y}{x}) = u_2(x,y)
 \label{eq:theta^-1}
-\end{gather*}
+\end{align*}
 
 Using the transformation theorem proved in Hogg et al. \cite[Chapter~2.7]{hogg}, we get
  
@@ -611,7 +611,7 @@ f_{X,Y}(x,y) = f_{R,\Theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)
 where 
 \begin{equation}
 \begin{split}
-|J| =
+|J| &=
 \left|
 \begin{matrix}
 \frac{\partial u_1}{\partial x} & 
@@ -629,9 +629,9 @@ where
 \frac{x}{y^2+x^2}  \\[2ex]
 \end{matrix}
 \right|\\[2ex]
-= \frac{x}{\sqrt{x^2+y^2}} \cdot \frac{x}{y^2+x^2} -\frac{y}{\sqrt{x^2+y^2}}  \cdot \left(-\frac{y}{y^2+x^2}\right)\\[2ex]
-= \frac{x^2+y^2}{(x^2+y^2)^{3/2}}\\[2ex]
-=\frac{1}{\sqrt{x^2+y^2}}
+&= \frac{x}{\sqrt{x^2+y^2}} \cdot \frac{x}{y^2+x^2} -\frac{y}{\sqrt{x^2+y^2}}  \cdot \left(-\frac{y}{y^2+x^2}\right)\\[2ex]
+&= \frac{x^2+y^2}{(x^2+y^2)^{3/2}}\\[2ex]
+&=\frac{1}{\sqrt{x^2+y^2}}
 \end{split}
 \label{eq:jacobiandet}
 \end{equation}
@@ -647,8 +647,8 @@ with the derivatives being calculated by Symbolab \cite{symbolab} with the follo
 Substituting \ref{eq:jacobiandet} into \ref{eq:transtheorem}, we get
 \begin{equation}
 \begin{split}
-f_{X,Y}(x,y) = f_{r,\theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot \frac{1}{\sqrt{x^2+y^2}}\\[2ex]
-f_{X,Y}(x,y) = \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqrt{x^2+y^2}}
+f_{X,Y}(x,y) &= f_{r,\theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot \frac{1}{\sqrt{x^2+y^2}}\\[2ex]
+f_{X,Y}(x,y) &= \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqrt{x^2+y^2}}
 %\begin{cases} 
 %      \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
 %      0&elsewhere
@@ -658,13 +658,81 @@ f_{X,Y}(x,y) = \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqr
 \end{equation}
 
 which represents the joint PDF of $X$ and $Y$.\\
-To calculate their individual densities, the marginal distributions are needed. 
+To calculate their individual densities, the marginal distributions are needed. As proofed by Larsen and Marx \cite[Theorem~3.7.2]{larsen2005introduction}, the marginal distribution for $X$ can be obtained by 
 
+\begin{equation}
+\begin{split}
+f_{X}(x) = \int_{0}^{\sqrt{1-x^2}}\frac{1}{2\pi\sqrt{x^2+y^2}} dy
+\end{split}
+\label{eq:marginalX}
+\end{equation}
 
+which calculates to 
 
+\begin{equation}
+\begin{split}
+f_{X}(x) = \frac{1}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) \quad x \in (0,1)
+%https://www.symbolab.com/solver/step-by-step/%5Cint_%7B0%7D%5E%7B%5Csqrt%7B1-x%5E2%7D%7D%5Cfrac%7B1%7D%7B2%5Cpi%5Csqrt%7Bx%5E%7B2%7D%2By%5E%7B2%7D%7D%7D%20dy
+\end{split}
+\label{eq:marginalXcalculated}
+\end{equation}
 
+using Symbolab \cite{symbolab} with the following code:
+\begin{lstlisting}
+\int _0^{\sqrt{1-x^2}}\frac{1}{2\pi \sqrt{x^2+y^2}}\:dy
+\end{lstlisting}
 
+PDF \ref{eq:transtheoremcomplete} is symmetric in $x$ and $y$ as $f_{X,Y}(x,y) = f_{Y,X}(y,x)$. Consequently, $f_Y(y)$ has similar form:
+\begin{equation}
+\begin{split}
+f_{Y}(y) = \frac{1}{2\pi }\ln\left(\frac{\sqrt{1-y^2}+1}{y}\right) \quad y \in (0,1)
+\end{split}
+\label{eq:marginalYcalculated}
+\end{equation}
 
+Lösung integralrechner:
+$\dfrac{\operatorname{arsinh}\left(\frac{\sqrt{1-x^2}}{x}\right)}{2{\pi}}$\\
+umgeschrieben:\\
+$\frac{ln\left[\left(\frac{\sqrt{1-x^2}}{x}\right)+\sqrt{\left(\frac{\sqrt{1-x^2}}{x}\right)^2+1}\right]}{2\pi}$
+
+To calculate the expected value, equation \ref{eq:ExpValueHogg} is used again:
+\begin{equation}
+\begin{split}
+E(X) = \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
+E(X) = \frac{1}{2\pi}\int_0^1  x\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
+E(X) = \frac{1}{4\pi } \cdot \left[x^2\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)-\sqrt{1-x^2}\right]_0^1\\
+E(X) = E(Y) = \frac{1}{4\pi} \approx 0.07958
+\end{split}
+\label{eq:expvalF_X}
+\end{equation}
+as again the same value calculates for $Y$ due to the symmetry of the distribution.
+WolframAlpha \cite{wolfalph} was used for this calculation with the following input:
+\begin{lstlisting}
+\int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)
+\end{lstlisting}
+
+To calculate the second moment, the variance, equation \ref{eq:HoggVariance} is recalled:
+\[
+Var(x) = E(X^2)-(E(X))^2
+\]
+where
+\begin{equation}
+\begin{split}
+E(X^2) =  \frac{1}{2\pi}\int_0^1  x^2\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx = \frac{1}{24}
+\end{split}
+\label{eq:E(X^2)}
+\end{equation}
+This calculation was done in WolframAlpha \cite{wolfalph} with the following input:
+\begin{lstlisting}
+\int_0^1  \frac{x^2}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)
+\end{lstlisting}
+Consequently, 
+\begin{equation}
+\begin{split}
+Var(X) = Var(Y) = \frac{1}{24}- \left(\frac{1}{4\pi}\right)^2 = \frac{2\pi ^2-3}{48\pi ^2} \approx 0.1581
+\end{split}
+\label{eq:VarXcalculated}
+\end{equation}
 
 
 
