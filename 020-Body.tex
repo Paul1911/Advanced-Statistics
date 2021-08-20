@@ -783,7 +783,7 @@ t(z)
 \end{equation}
 
 \section{Likelihood Function}
-Given an experiment with the dual-router-system yielding a sample $T1$, $T2$, ..., $Tn$, calculate the likelihood function for $\theta$. Propose a transformation of this likelihood function whose maximum is the same and can be computed easily.
+Given an experiment with the dual-router-system yielding a sample $T_1$, $T_2$, ..., $T_n$, calculate the likelihood function for $\theta$. Propose a transformation of this likelihood function whose maximum is the same and can be computed easily.
 
 Following Definition 5.2.1 in Larsen and Marx \cite{larsen2005introduction}, the likelihood function is described by
 \begin{equation}
@@ -991,6 +991,28 @@ If we now want to model the weight distribution of our hammers, the best assumpt
 
 
 \chapter{Workbook Assignment 5: Sufficient Statistics}	
+Let $X_1,~X_2,~...,~X_n$ be the random sample of a positive random variable $X$ having the density function 
+\begin{equation}
+\begin{split}
+f_X(x;~\theta) = \frac{1}{5!~\theta^3}x^2e^{-\frac{x}{\theta}}
+\end{split}
+\label{eq:expvalue4}
+\end{equation}
+with one parameter $\theta \in \mathbb{R}+$. Find an estimator for $\theta$ that is sufficient. 
+\\
+Larsen and Marx define Sufficient Statistics as follows: "Let $X_1 = k_1, . . . , X_n = k_n$ be a random sample of size $n$ from$p_X(k;~\theta)$. The statistic $\hat{\theta} = h(X_1, . . . , X_n)$ is sufficient for θ if the likelihood function,$L(θ)$, factors into the product of the pdf for $\hat{\theta}$ and a constant that does not
+involve $\theta$ — that is, if
+blablabla
+
+To calculate the likelihood function, its definition \eqref{eq:LikelyhoodFunctionDefinition} is used for \eqref{eq:SufficientLikelihood}.
+\begin{equation}
+\begin{split}
+L(\theta) 
+&= \prod_{i=1}^n f_X(x_i;~\theta)\\
+&= \frac{1}{5!~\theta^3}x_i^2e^{-\frac{x_i}{\theta}}\\
+\end{split}
+\label{eq:SufficientLikelihood}
+\end{equation}
 
 Introduction to Mathematical Statistics and Its Applications: Pearson New International Edition PDF 
 5. Estimation
