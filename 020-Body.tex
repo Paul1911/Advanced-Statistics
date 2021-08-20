@@ -6,7 +6,7 @@ For each of the distributions below, please provide the requested graphics as we
 \section{Bernoulli Distribution}
 
 Assumed a binary vote with outcome for or against is described by a Bernoulli distribution, with $P(vote = "for") = 0.69$. 
-Interpreting this as a one-trial Bernoulli experiment with the two outcomes for and against - represented by success and no success respectively - we can visualize it as displayed in figure~\ref{fig:1a}.
+Interpreting this as a one-trial Bernoulli experiment with the two outcomes for and against - represented by success and no success respectively - we can visualize it as displayed in figure~\eqref{fig:1a}.
 
 
 \begin{figure}[h]
@@ -18,7 +18,7 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 \FloatBarrier
 
 
-As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\ref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is: 
+As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\eqref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is: 
 
 \begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
 \label{eq:expvaluebernoulli}\end{equation}
@@ -61,7 +61,7 @@ The Poisson distribution is a discrete probability distribution representing the
 
 The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as you cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. 
 
-Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in figure \ref{fig:1b}.
+Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in figure \eqref{fig:1b}.
 
 \begin{figure}[h]
 \centering
@@ -139,7 +139,7 @@ To facilitate calculations, we reformulate the periodic numbers to fractions:
 \label{eq:initcdffractioned}
 \end{equation}
 
-Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \ref{eq:truecdf} to the conventional expression \cite{deisenroth}. 
+Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \eqref{eq:truecdf} to the conventional expression \cite{deisenroth}. 
 
 \begin{equation}  F_Y(y) = f(Y \leq y) =1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)
 \label{eq:truecdf}
@@ -152,7 +152,7 @@ As $Y$ and $y$ are defined as time and time cannot be negative in this case, the
 \label{eq:secderivative}
 \end{equation}
 
-As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe $F_Y(y)$ of \ref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} F_Y(y)= 1$ and $F_Y(0)= 0$ for the support of $y$. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
+As \eqref{eq:secderivative}, the second derivative of formula \eqref{eq:truecdf},  additionally has no real-valued solution for $y=0$, we can describe $F_Y(y)$ of \eqref{eq:truecdf} as being upwards continuous monotonic increasing. Furthermore, $\lim_{y\to\infty} F_Y(y)= 1$ and $F_Y(0)= 0$ for the support of $y$. This is sufficient evidence to assume that the provided distribution of the random variable $y$ is a cumulative distribution function (CDF) of the family of exponential distributions. 
 
 \begin{figure}[h]
 \centering
@@ -163,7 +163,7 @@ As \ref{eq:secderivative}, the second derivative of formula \ref{eq:truecdf},  a
 \FloatBarrier
 
 
-For any calculation regarding the probability to hear an owl within a time interval, we use the CDF. If we for example wanted to know $P(2 \leq Y \leq 4)$, the probability of needing to wait two to four hours to hear an owl, we would calculate it as described in equation \ref{eq:prob24}.
+For any calculation regarding the probability to hear an owl within a time interval, we use the CDF. If we for example wanted to know $P(2 \leq Y \leq 4)$, the probability of needing to wait two to four hours to hear an owl, we would calculate it as described in equation \eqref{eq:prob24}.
 
 \begin{equation} P(2 \leq Y \leq 4) = P(Y \leq 4) - P(Y \leq 2)
 \label{eq:prob24}
@@ -195,17 +195,17 @@ f_Y(y) = \dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90}
 \end{figure}
 \FloatBarrier
 
-The graphical representation of the PDF in figure \ref{fig:1c2} also includes the mean value. This is calculated using equation \ref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
+The graphical representation of the PDF in figure \eqref{fig:1c2} also includes the mean value. This is calculated using equation \eqref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
 \begin{equation}
 E(X) = \int^{+\infty}_{-\infty} x f_X(x) ~ dx
 \label{eq:ExpValueHogg}
 \end{equation}
-Conditions for this to be true are that equation \ref{eq:ExpValueHoggcondition} is fulfilled and that $X$ is a continuous random variable with $f_X(x)$ as its PDF.
+Conditions for this to be true are that equation \eqref{eq:ExpValueHoggcondition} is fulfilled and that $X$ is a continuous random variable with $f_X(x)$ as its PDF.
 \begin{equation}
 \int^{+\infty}_{-\infty} |x| f_X(x) ~ dx < \infty
 \label{eq:ExpValueHoggcondition}
 \end{equation}
-By the task assignment, we know that $y$ is a continuous random variable. By equation \ref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, the left hand side of inequality \ref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \ref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \ref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
+By the task assignment, we know that $y$ is a continuous random variable. By equation \eqref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, the left hand side of inequality \eqref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \eqref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \eqref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
 %
 \begin{equation}
 E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90} \right) ~dy = \frac{154}{45} = 3.4\overline{2}
@@ -214,13 +214,13 @@ E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\ma
 Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = E(X) = 3.4\overline{2}$. 
 \\
 
-To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \ref{eq:HoggVariance}.
+To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \eqref{eq:HoggVariance}.
 \begin{equation}
 \sigma^2 = E(X^2) - \mu^2
 \label{eq:HoggVariance}
 \end{equation}
 %
-The variance of $y$ is calculated by \ref{eq:YVariance}, using the same assumptions as for equation \ref{eq:ExpValueCalculation}.
+The variance of $y$ is calculated by \eqref{eq:YVariance}, using the same assumptions as for equation \eqref{eq:ExpValueCalculation}.
 \begin{equation}
 \sigma^2 = \int^{+\infty}_{0} y^2 f(y) ~ dy - \mu^2
 = \int^{+\infty}_{0} \dfrac{y^2\left(16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}\right)}{90} - \left(\frac{154}{45}\right)^2
@@ -228,9 +228,9 @@ The variance of $y$ is calculated by \ref{eq:YVariance}, using the same assumpti
 \label{eq:YVariance}
 \end{equation}
 
-The variance is also depicted in figure \ref{fig:1c2}     as its root, the standard deviation $\sigma \approx 3.6545$. 
+The variance is also depicted in figure \eqref{fig:1c2}     as its root, the standard deviation $\sigma \approx 3.6545$. 
 
-Both figures \ref{fig:1c1} and \ref{fig:1c2} furthermore display the first three quartiles of the PDF. Hogg et al. \cite[Chapter~1.7.1]{hogg} define the second quartile, the median, as the point dividing area under the PDF into two areas of equal size, which again are divided into two areas of equal size by the first and third quartile. As the CDF is the integral of the PDF and consequently by nature describes the area under the curve of the PDF, we can simply use equation \ref{eq:truecdf} for the calculation of quartiles. We know that each quartile has to cover a quarter of the area under the curve of PDF \ref{eq:pdf}. This means we can substitute 0.25, 0.5 and 0.75 for $(F_Y \leq y)$ in equation \ref{eq:truecdf} and solve for $y$ to get the quartiles. This is exemplarily done in equation \ref{eq:firstquartile} for the first quartile.
+Both figures \eqref{fig:1c1} and \eqref{fig:1c2} furthermore display the first three quartiles of the PDF. Hogg et al. \cite[Chapter~1.7.1]{hogg} define the second quartile, the median, as the point dividing area under the PDF into two areas of equal size, which again are divided into two areas of equal size by the first and third quartile. As the CDF is the integral of the PDF and consequently by nature describes the area under the curve of the PDF, we can simply use equation \eqref{eq:truecdf} for the calculation of quartiles. We know that each quartile has to cover a quarter of the area under the curve of PDF \eqref{eq:pdf}. This means we can substitute 0.25, 0.5 and 0.75 for $(F_Y \leq y)$ in equation \eqref{eq:truecdf} and solve for $y$ to get the quartiles. This is exemplarily done in equation \eqref{eq:firstquartile} for the first quartile.
 
 \begin{equation}
 \begin{split}
@@ -243,7 +243,7 @@ y_1 &\approx 0.9087
 \end{equation}
 
 The second and third quartile can be calculated in the same way, resulting in $y_2 \approx 2.2430$ for the second quartile and $y_3 \approx 4.6588$ for the third quartile. The calculations were done using symbolab \cite{symbolab} with the following commands:
-\begin{minted}{python}
+\begin{lstlisting}
 solve 0.25 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 \mathrm{e}^{-0.25y} \right)
 
@@ -252,9 +252,9 @@ solve 0.5 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 
 solve 0.75 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 \mathrm{e}^{-0.25y} \right)
-\end{minted}
+\end{lstlisting}
 
-As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \ref{fig:1c1} as points whereas in figure \ref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \ref{eq:pdf}'s area under the curve to its left. 
+As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \eqref{fig:1c1} as points whereas in figure \eqref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \eqref{eq:pdf}'s area under the curve to its left. 
 
 \begin{figure}[h]
 \centering
@@ -264,7 +264,7 @@ As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we t
 \end{figure}
 \FloatBarrier
 
-Lastly, figure \ref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would hear an owl approximately in five observations in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
+Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would hear an owl approximately in five observations in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
 
 Calculations and visualisations were done in Jupyter notebooks using the following python code:
 \begin{minted}{python}
@@ -486,7 +486,7 @@ Assumed you have recorded mappings of X and Y values, what is an appropriate way
 (7.27, -17.04), (-1.989, 257.91), (3.582, -229.89), \\(-1.2, -349.18), 
 (4.118, 226.05), (-1.834, -534.54), (-1.882, 610.91), (8.677, 70.11) \\
 
-As the variables in the data are both continuous and the question addresses the calculation of correlation, the optimal visualisation is a scatter diagram as for example figure~\ref{fig:WorkbookAssignment2a}.
+As the variables in the data are both continuous and the question addresses the calculation of correlation, the optimal visualisation is a scatter diagram as for example figure~\eqref{fig:WorkbookAssignment2a}.
 
 \begin{figure}[h]
 \centering
@@ -496,7 +496,7 @@ As the variables in the data are both continuous and the question addresses the 
 \end{figure}
 \FloatBarrier
 
-Looking at the scatter plot, one can observe that the data is quite evenly dispersed; No pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\ref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value. 
+Looking at the scatter plot, one can observe that the data is quite evenly dispersed; No pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\eqref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value. 
 
 
 \begin{equation}  E(X) = \sum [x * P(x)]
@@ -508,7 +508,7 @@ http://mathcenter.oxford.emory.edu/site/math117/expectedValueOfADiscreteRandomVa
 
 The results are consequently $E(X) = -1.5944$ and $E(Y) = 3.3250$.
 
-The sample covariance is defined in Equation~\ref{eq:COV}, where $\bar{x} = E(X)$ and $\bar{y} = E(Y)$ (adapted from~\cite{bruce2017practical}).
+The sample covariance is defined in Equation~\eqref{eq:COV}, where $\bar{x} = E(X)$ and $\bar{y} = E(Y)$ (adapted from~\cite{bruce2017practical}).
 
 \begin{equation}  s_{xy} = \frac{\sum(x_{i}-\bar{x})(y_{i}-\bar{y})}{n-1}
 \label{eq:COV}
@@ -547,7 +547,7 @@ Assumed we have a ball being thrown at a random angle $\theta$ [0,360) (in degre
 
 Following Illowsky and Dean \cite[Chapter~5.2]{illowsky2018introductory}, the pdf of an uniformly distributed variable is $f(x) = \frac{1}{b-a}$ for $a \leq x \leq b$. 
 
-As $\theta,r \sim \mathcal{U}$, we can formulate the marginal distributions as described in \ref{eq:theta_untransformed} (using radiants) and \ref{eq:r_untransformed}.
+As $\theta,r \sim \mathcal{U}$, we can formulate the marginal distributions as described in \eqref{eq:theta_untransformed} (using radiants) and \eqref{eq:r_untransformed}.
 
 \begin{equation}
 f_\Theta(\theta) = 
@@ -644,7 +644,7 @@ with the derivatives being calculated by Symbolab \cite{symbolab} with the follo
 \frac{\partial }{\partial \:y}\left(tan^{-1}\left(\frac{y}{x}\right)\right)
 \end{lstlisting}
 
-Substituting \ref{eq:jacobiandet} into \ref{eq:transtheorem}, we get
+Substituting \eqref{eq:jacobiandet} into \eqref{eq:transtheorem}, we get
 \begin{equation}
 \begin{split}
 f_{X,Y}(x,y) &= f_{r,\theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot \frac{1}{\sqrt{x^2+y^2}}\\[2ex]
@@ -682,7 +682,7 @@ using Symbolab \cite{symbolab} with the following code:
 \int _0^{\sqrt{1-x^2}}\frac{1}{2\pi \sqrt{x^2+y^2}}\:dy
 \end{lstlisting}
 
-PDF \ref{eq:transtheoremcomplete} is symmetric in $x$ and $y$ as $f_{X,Y}(x,y) = f_{Y,X}(y,x)$. Consequently, $f_Y(y)$ has similar form:
+PDF \eqref{eq:transtheoremcomplete} is symmetric in $x$ and $y$ as $f_{X,Y}(x,y) = f_{Y,X}(y,x)$. Consequently, $f_Y(y)$ has similar form:
 \begin{equation}
 \begin{split}
 f_{Y}(y) = \frac{1}{2\pi }\ln\left(\frac{\sqrt{1-y^2}+1}{y}\right) \quad y \in (0,1)
@@ -695,7 +695,7 @@ $\dfrac{\operatorname{arsinh}\left(\frac{\sqrt{1-x^2}}{x}\right)}{2{\pi}}$\\
 umgeschrieben:\\
 $\frac{ln\left[\left(\frac{\sqrt{1-x^2}}{x}\right)+\sqrt{\left(\frac{\sqrt{1-x^2}}{x}\right)^2+1}\right]}{2\pi}$
 
-To calculate the expected value, equation \ref{eq:ExpValueHogg} is used again:
+To calculate the expected value, equation \eqref{eq:ExpValueHogg} is used again:
 \begin{equation}
 \begin{split}
 E(X) = \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
@@ -711,7 +711,7 @@ WolframAlpha \cite{wolfalph} was used for this calculation with the following in
 \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)
 \end{lstlisting}
 
-To calculate the second moment, the variance, equation \ref{eq:HoggVariance} is recalled:
+To calculate the second moment, the variance, equation \eqref{eq:HoggVariance} is recalled:
 \[
 Var(x) = E(X^2)-(E(X))^2
 \]
@@ -738,16 +738,138 @@ Var(X) = Var(Y) = \frac{1}{24}- \left(\frac{1}{4\pi}\right)^2 = \frac{2\pi ^2-3}
 
 \chapter{Workbook Assignment 3: A Simple Parameter Estimation}	
 
-Supposed we have a network router with a total bandwith until it breaks down described by the random variable $S$. It is described by the exponential distribution \ref{eq:exphardwarefailure}.
+Supposed we have a network router with a total bandwith until it breaks down described by the random variable $S$, which is exponentially distributed:
 \begin{equation}
 \begin{split}
-s(t) = \frac{1}{\theta} e^{-\frac{t}{\theta}}
+%s(t) = f_S(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}
+s(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}
 \end{split}
 \label{eq:exphardwarefailure}
 \end{equation}
-Assumed we have another backup device, the total throughput until breakdown of both devices is described by the pdf REFFFFF
 
+\section{Bandwith Total to Failure}
+Assumed we have another backup device, the bandwidth total to failure of both devices is described by $T$, which is the sum of $S_1$ and $S_2$, which each are described by \eqref{eq:exphardwarefailure}. T is consequently
+\begin{equation}
+\begin{split}
+T = S_1 + S_2
+\end{split}
+\label{eq:T}
+\end{equation}
+Both variables are random variables by task assignment and it can furthermore be assumed that they are independent as the performance of one device has no influence on the performance of another device. Furthermore, bandwidth is a continuous variable. The sum of both variables is consequently calculated by convolution, following Larsen and Marx \cite[Theorem~3.8.3]{larsen2005introduction}.
+\begin{equation}
+\begin{split}
+t(z) = \int_{-\infty}^\infty s(t)s(z-t)~dt
+\end{split}
+\label{eq:tz1}
+\end{equation}
+As only positive values can be obtained for the bandwidth, \eqref{eq:tz1} simplifies to 
+\begin{equation}
+\begin{split}
+t(z) = \int_{0}^zs(t)s(z-t)~dt
+\end{split}
+\label{eq:tz2}
+\end{equation}
+inserting the density of $S$ yields
+\begin{equation}
+\begin{split}
+t(z) 
+&= \int_{0}^z \left(\frac{1}{\theta} e^{-\frac{t}{\theta}}\right)
+\left(\frac{1}{\theta} e^{-\frac{z-t}{\theta}}\right)~dt\\
+&= \frac{1}{\theta^2} e^{-\frac{z}{\theta}}\int_{0}^z~dt\\
+&= \frac{z}{\theta^2} e^{-\frac{z}{\theta}}\\
+&= f_T(z;~\theta)
+\end{split}
+\label{eq:tz3}
+\end{equation}
 
+\section{Likelihood Function}
+Given an experiment with the dual-router-system yielding a sample $T1$, $T2$, ..., $Tn$, calculate the likelihood function for $\theta$. Propose a transformation of this likelihood function whose maximum is the same and can be computed easily.
+
+Following Definition 5.2.1 in Larsen and Marx \cite{larsen2005introduction}, the likelihood function is described by
+\begin{equation}
+\begin{split}
+L(\theta) = \prod_{i=1}^n f_Y(y_i;~\theta)
+\end{split}
+\label{eq:LikelyhoodFunctionDefinition}
+\end{equation}
+which, in the case of this tasks, is 
+\begin{equation}
+\begin{split}
+L(\theta) 
+&= \prod_{i=1}^n f_T(z_i;~\theta)\\
+&= \prod_{i=1}^n \frac{z_i}{\theta^2} e^{-\frac{z_i}{\theta}}\\
+\end{split}
+\label{eq:LikelyhoodFunction2}
+\end{equation}
+and simplifies to 
+\begin{equation}
+\begin{split}
+L(\theta) 
+&= \theta^{-2n}\left(\prod_{i=1}^n z_i\right)e^{-\frac{1}{\theta}\sum_{i=1}^n z_i}
+\end{split}
+\label{eq:LikelyhoodFunction3}
+\end{equation}
+To calculate the maximum likelihood, equation \eqref{eq:LikelyhoodFunction3} must be derived with respect to $\theta$ and equated to $0$. In its current form, such calculation quickly becomes computationally expensive and eventually inaccurate. To surpass such problem, \eqref{eq:LikelyhoodFunction3} can be transformed using the natural logarithm as the value maximising $L(\theta)$ also maximises $\ln L(\theta)$:
+\begin{equation}
+\begin{split}
+\ln~L(\theta) 
+&= -2n\ln\theta + \ln\left(\prod_{i=1}^n z_i\right)-\frac{1}{\theta}\sum_{i=1}^n z_i
+\end{split}
+\label{eq:LikelyhoodFunction4}
+\end{equation}
+The derivation then yields
+\begin{equation}
+\begin{split}
+\frac{d\ln~L(\theta)}{d\theta}
+&= \frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i
+\end{split}
+\label{eq:LikelyhoodFunction5}
+\end{equation}
+which results in the maximum likelihood function when equated to $0$ and solved for $\theta$:
+\begin{equation}
+\begin{split}
+\frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i = 0
+\end{split}
+\label{eq:LikelyhoodFunction6}
+\end{equation}
+The maximum likelihood estimator $\theta_e$ is consequently 
+\begin{equation}
+\begin{split}
+\theta_e =\frac{1}{2n}\sum_{i=1}^n z_i
+\end{split}
+\label{eq:MLE}
+\end{equation}
+In an experiment with $n=5$ observations measuring the total bandwidth to failure, the following results were observed:
+\begin{center}
+16, 86, 96, 17, 339
+\end{center}
+To estimate the model-parameter with the maximum likelihood, the values are inserted into \eqref{eq:MLE}:
+\begin{equation}
+\begin{split}
+\theta_e =\frac{1}{2\cdot5}(16+86+96+17+339) = 55.4
+\end{split}
+\label{eq:MLECalculation}
+\end{equation}
+To calculate the expectation of the bandwidth, we reuse equation \eqref{eq:ExpValueHogg} which, applied to this task, is
+\begin{equation}
+\begin{split}
+E(T) = \int_0^\infty z\frac{z}{\theta^2} e^{-\frac{z}{\theta}}~dz\\
+\end{split}
+\label{eq:expvalue3}
+\end{equation}
+and calculates to 
+\begin{equation}
+\begin{split}
+E(T) 
+&= \int_0^\infty z\frac{z}{55.4^2} e^{-\frac{z}{55.4}}~dz\\
+&= 110.8
+\end{split}
+\label{eq:expvalue4}
+\end{equation}
+Equation \eqref{eq:expvalue4} was calculated using symbolab \cite{symbolab} with the following command:
+\begin{lstlisting}
+\int _0^{\infty }\:z\frac{z}{55.4^2}\:e^{-\frac{z}{55.4}}
+\end{lstlisting}
 
 \chapter{Workbook Assignment 4: Hypothesis Test}	
 
@@ -771,7 +893,7 @@ Consequently, we assume that the normal distribution is the best approximation.
 
 Using the normal distribution as approximation implies accepting several assumptions. We assume that the model has the x-axis as an horizontal asymptote, that its mean is equal to its median, that its mode is the same as its mean and that it is symmetric about the mean \cite[Chapter~3.4]{hogg}.
 
-Using \ref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\sigma_1 = 42$, the following model is proposed: 
+Using \eqref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\sigma_1 = 42$, the following model is proposed: 
 
 \begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{3528 }}}
 \label{eq:normaldistadapted}
@@ -820,7 +942,7 @@ with the decision rule of rejecting $H_0$ if
 where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses wich an error in this test might incur are quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
 
 
-Inserting the sample figures into \ref{eq:chisquarestatistic}, we observe 
+Inserting the sample figures into \eqref{eq:chisquarestatistic}, we observe 
 \begin{equation}
 \chi^2 = \frac{(10-1) \cdot \frac{32594.9}{9}}{1764} = \frac{32594.9}{1764} \approx 18.48
 \label{eq:chisqstatcalc}
@@ -899,7 +1021,7 @@ TeXLive: \url{http://tug.org/texlive/}
  
  A good editor is essential. Sometimes combined editors and compilers (e.g. TeXShop) can be really productive. Make sure you learn the use of synchronized navigation then.
 
-A vector graphic is one where strokes remain strokes even at the highest resolutions: e.g. the Figure~\ref{fig:spiral} or the Logo on the \hyperref[titlePage]{Titelblatt} (notice: you can click from here to there).
+A vector graphic is one where strokes remain strokes even at the highest resolutions: e.g. the Figure~\eqref{fig:spiral} or the Logo on the \hyperref[titlePage]{Titelblatt} (notice: you can click from here to there).
 Many tools generate vector-graphics for plots from any data-set. E.g. Plotly (with the use of the Browser-Print), MatPlotLib or even OpenOffice, LibreOffice or MS-Excel.
 
 \section{Literature References}
