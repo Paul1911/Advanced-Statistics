@@ -994,28 +994,56 @@ If we now want to model the weight distribution of our hammers, the best assumpt
 Let $X_1,~X_2,~...,~X_n$ be the random sample of a positive random variable $X$ having the density function 
 \begin{equation}
 \begin{split}
-f_X(x;~\theta) = \frac{1}{5!~\theta^3}x^2e^{-\frac{x}{\theta}}
+f_X(x;~\theta) = \frac{1}{2!~\theta^3}x^2e^{-\frac{x}{\theta}}
 \end{split}
-\label{eq:expvalue4}
+\label{eq:suffpdf}
 \end{equation}
 with one parameter $\theta \in \mathbb{R}+$. Find an estimator for $\theta$ that is sufficient. 
 \\
-Larsen and Marx define Sufficient Statistics as follows: "Let $X_1 = k_1, . . . , X_n = k_n$ be a random sample of size $n$ from$p_X(k;~\theta)$. The statistic $\hat{\theta} = h(X_1, . . . , X_n)$ is sufficient for θ if the likelihood function,$L(θ)$, factors into the product of the pdf for $\hat{\theta}$ and a constant that does not
-involve $\theta$ — that is, if
-blablabla
-
-To calculate the likelihood function, its definition \eqref{eq:LikelyhoodFunctionDefinition} is used for \eqref{eq:SufficientLikelihood}.
+Larsen and Marx define Sufficient Statistics as follows: "Let $X_1 = k_1, . . . , X_n = k_n$ be a random sample of size $n$ from $p_X(k;~\theta)$. The statistic $\hat{\theta} = h(X_1, . . . , X_n)$ is sufficient for $\theta$ if the likelihood function, $L(\theta)$, factors into the product of the pdf for $\hat{\theta}$ and a constant that does not involve $\theta$ — that is, if
+\begin{equation}
+\begin{split}
+L(\theta) 
+= \prod_{i=1}^n p_X(k_i;\theta)
+=p_{\hat{\theta}}(\theta_e;\theta)b(k_1,...,k_n)
+\end{split}
+\label{eq:SufficientLikelihood}
+\end{equation}
+A similar statement holds if the data consist of a random sample $Y_1~=~y_1,...,Y_n~=~ y_n$ drawn from a coninuous pdf $f_Y(y;\theta)$." \cite{larsen2005introduction}.
+This can be constructed for the given density function \eqref{eq:suffpdf}. Firstly, to calculate the likelihood function, its definition \eqref{eq:LikelyhoodFunctionDefinition} is used for \eqref{eq:SufficientLikelihood}.
 \begin{equation}
 \begin{split}
 L(\theta) 
 &= \prod_{i=1}^n f_X(x_i;~\theta)\\
-&= \frac{1}{5!~\theta^3}x_i^2e^{-\frac{x_i}{\theta}}\\
+&= \prod_{i=1}^n \frac{1}{2!~\theta^3}x_i^2e^{-\frac{x_i}{\theta}}\\
 \end{split}
-\label{eq:SufficientLikelihood}
+\label{eq:SufficientLikelihood2}
 \end{equation}
+This can be simplified to 
+\begin{equation}
+\begin{split}
+L(\theta) 
+&= \frac{1}{2^n\theta^{3n}}\prod_{i=1}^n x_i^2e^{-\frac{x_i}{\theta}}\\
+&= \frac{1}{2^n\theta^{3n}} e^{-\frac{1}{\theta}\sum_{i=1}^nx_i} \left(\prod_{i=1}^n x_i\right)^2\\
+\end{split}
+\label{eq:SufficientLikelihood3}
+\end{equation}
+Now
+\begin{equation}
+\begin{split}
+p_{\hat{\theta}}(\theta_e;\theta) = \frac{1}{2^n\theta^{3n}} e^{-\frac{1}{\theta}\sum_{i=1}^nx_i}
+\end{split}
+\label{eq:SufficientLikelihood4}
+\end{equation}
+and
+\begin{equation}
+\begin{split}
+b(k_1,...,k_n) = \left(\prod_{i=1}^n x_i\right)^2
+\end{split}
+\label{eq:SufficientLikelihood5}
+\end{equation}
+As \eqref{eq:SufficientLikelihood5} is not a function of $\theta$, $\sum_{i=1}^nx_i$ is a sufficient estimator for $\theta$.
 
-Introduction to Mathematical Statistics and Its Applications: Pearson New International Edition PDF 
-5. Estimation
 sufficient estimators
 Übung 5.6.5
 
