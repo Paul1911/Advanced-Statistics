@@ -1049,11 +1049,57 @@ sufficient estimators
 
 
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
-
+Let $X1, X2, ... , X10$ be a random sample from a gamma distribution with $\alpha =3$ and $\beta =1/\theta$. Suppose we believe that $\theta$ follows a gamma-distribution with $\alpha =3$ and $\beta = 2$.
 (following Hogg, McKean and Craig, exercise 11.2.2)
-Let $X1, X2, ... , X10$ be a random sample from a gamma distribution with $\alpha =3$ and $\beta =1/\theta$. Suppose we believe that $\theta$ follows a gamma-distribution with $\alpha =3$ and $\beta = 2$
 
-a) Find the posterior distribution of ��.
+\section{Posterior Distribution}
+To calculate the posterior distribution, we can formulate the following Bayesian model from the task assignment:
+\begin{equation}
+\begin{split}
+X_i|\theta &\sim \Gamma\left(3,\frac{1}{\theta}\right)\\
+\Theta &\sim \Gamma(3,2).
+\end{split}
+\label{eq:Bayesmodel}
+\end{equation}
+The Gamma distribution which both $X$ and $\Theta$ follow is given by Hogg et al. \cite[Definition~3.3.2]{hogg}:
+\begin{equation}
+\begin{split}
+f(x) = \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha}\quad x>0.
+\end{split}
+\label{eq:GammaDist}
+\end{equation}
+Generally, the posterior pdf $k(\theta|X)$ is given by Hogg et al. as: \cite[Definition 11.1.5]{hogg} 
+\begin{equation}
+\begin{split}
+k(\theta|x) = \frac{L(x|\theta)h(\theta)}{g_1(x)}
+\end{split}
+\label{eq:Posterior}
+\end{equation}
+where 
+\begin{equation}
+\begin{split}
+g_1(x) = \int_{-\infty}^\infty L(x|\theta)h(\theta) ~d\theta.
+\end{split}
+\label{eq:g_1}
+\end{equation}
+Following Hogg et al. \cite[Chapter 11.1.1]{hogg} the simplified notation of 
+\begin{equation}
+\begin{split}
+k(\theta|x) \propto L(x|\theta)h(\theta)
+\end{split}
+\label{eq:Posterior2}
+\end{equation}
+is sufficient to calculate the posterior distribution; here it is not necessary to calculate $g_1(x)$. 
+
+\begin{equation}
+\begin{split}
+h(\theta) = 
+\end{split}
+\label{eq:Posterior}
+\end{equation}
+
+
+
 b) If the observed ��̅=16.5, what is the Bayes point estimate associated with the square-error loss function?
 c) What is the Bayes point estimate using the mode of the posterior distribution?
 
