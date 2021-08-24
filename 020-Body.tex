@@ -1089,7 +1089,16 @@ k(\theta|x) \propto L(x|\theta)h(\theta)
 \end{split}
 \label{eq:Posterior2}
 \end{equation}
-is sufficient to calculate the posterior distribution; here it is not necessary to calculate $g_1(x)$. 
+is sufficient to calculate the posterior distribution; the calculation of $g_1(x)$ can consequently be dropped. $L(x|\theta)$ is obtained by inserting the upper model of \eqref{eq:Bayesmodel} into \eqref{eq:GammaDist}:
+\begin{equation}
+\begin{split}
+L(x|\theta) 
+&= \prod_{i=1}^n \frac{x_i^{3-1}e^{-\frac{x_i}{\frac{1}{\theta}}}}{\Gamma(3)\left(\frac{1}{\theta}\right)^3} \\
+&= \prod_{i=1}^n \frac{x_i^{2}\theta^3e^{-x_i\theta}}{\Gamma(3)}\\
+&= \frac{x^{2n}\theta^{3n}e^{-\theta\sum_{i=1}^nx_i}}{\Gamma(3)^n}
+\end{split}
+\label{eq:bayeslikelyhood}
+\end{equation}
 
 \begin{equation}
 \begin{split}
