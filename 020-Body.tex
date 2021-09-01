@@ -57,11 +57,9 @@ fig.write_image("figures/1a.pdf")
 Assumed we try to model the number of meteorites falling on an ocean each year - why would a Poisson Distribution be a natural candidate?
 
 
-The Poisson distribution is a discrete probability distribution representing the number of events occurring in a defined period. It assumes the events occur with a known constant mean rate and that the events are independent of the time since the last event \cite[Chapter~4.6]{illowsky2018introductory}. By definition, a pure Poisson distribution assumes that the variance $\sigma^2$ is equal to the mean $\mu$: $\sigma^2 = \mu$. Citation By using a Gamma-Poisson distribution however can lift this restriction. 
+The Poisson distribution is a discrete probability distribution representing the number of events occurring in a defined period. It assumes the events occur with a known constant mean rate and that the events are independent of the time since the last event \cite[Chapter~4.6]{illowsky2018introductory}.
 
-The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as you cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. 
-
-Additionally assuming $\mu = 64$ allows for an exemplary visualisation as in figure \eqref{fig:1b}.
+The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as you cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. Additionally assuming $\mu = 64$ allows an exemplary visualisation as in figure \eqref{fig:1b}.
 
 \begin{figure}[h]
 \centering
@@ -168,7 +166,6 @@ For any calculation regarding the probability to hear an owl within a time inter
 \begin{equation} P(2 \leq Y \leq 4) = P(Y \leq 4) - P(Y \leq 2)
 \label{eq:prob24}
 \end{equation}
-%evtl explanation warum das so ist
 Applied to our distribution, we calculate
 \begin{equation} P (2 \leq Y \leq 4) =1-\left( \dfrac{13}{45}\mathrm{e}^{-2} + \dfrac{32}{45}\mathrm{e}^{-1}\right) -\left[ 1-\left( \dfrac{13}{45}\mathrm{e}^{-1} + \dfrac{32}{45}\mathrm{e}^{-0.5}\right)\right] 	\approx 0.23688696
 \label{eq:probcalc24}
@@ -457,8 +454,7 @@ fig.write_image("figures/1c2.pdf")
 
 #Creating the Histogram per minute
 
-trace4 = go.Bar(x=pdf_realfunc_df[0],
-                y=pdf_realfunc_df[1] / 60,
+trace4 = go.Bar(y=pdf_realfunc_df[1] / 60,
                 name="Histogram of f_Y(y)",
                 marker_color='#3399FF')
 
@@ -514,7 +510,7 @@ The sample covariance is defined in Equation~\eqref{eq:COV}, where $\bar{x} = E(
 \label{eq:COV}
 \end{equation}
 
-Applying the formula to the provided data, $s_{xy} = 284.23$ can be observed. This indicates a positive relationship, but does not provide any information on its quality. 
+Applying the formula to the provided data, $s_{xy} = 284.23$ can be observed. This indicates a positive relationship.
 
 The calculations were done using Python 3.9 and the following code:
 
@@ -689,12 +685,6 @@ f_{Y}(y) = \frac{1}{2\pi }\ln\left(\frac{\sqrt{1-y^2}+1}{y}\right) \quad y \in (
 \end{split}
 \label{eq:marginalYcalculated}
 \end{equation}
-
-Lösung integralrechner:
-$\dfrac{\operatorname{arsinh}\left(\frac{\sqrt{1-x^2}}{x}\right)}{2{\pi}}$\\
-umgeschrieben:\\
-$\frac{ln\left[\left(\frac{\sqrt{1-x^2}}{x}\right)+\sqrt{\left(\frac{\sqrt{1-x^2}}{x}\right)^2+1}\right]}{2\pi}$
-
 To calculate the expected value, equation \eqref{eq:ExpValueHogg} is used again:
 \begin{equation}
 \begin{split}
@@ -755,7 +745,7 @@ T = S_1 + S_2
 \end{split}
 \label{eq:T}
 \end{equation}
-Both variables are random variables by task assignment and it can furthermore be assumed that they are independent as the performance of one device has no influence on the performance of another device. Furthermore, bandwidth is a continuous variable. The sum of both variables is consequently calculated by convolution, following Larsen and Marx \cite[Theorem~3.8.3]{larsen2005introduction}.
+Both variables are random variables by task assignment and it can furthermore be assumed that they are independent as the performance of one device has no influence on the performance of another device. Furthermore, bandwidth is a continuous variable that cannot take negative values. With these assumptions about the variables ,the sum of both variables is consequently calculated by convolution, following Larsen and Marx \cite[Theorem~3.8.3]{larsen2005introduction}.
 \begin{equation}
 \begin{split}
 t(z) = \int_{-\infty}^\infty s(t)s(z-t)~dt
@@ -939,7 +929,7 @@ with the decision rule of rejecting $H_0$ if
 \label{eq:decisionrule}
 \end{equation}
 \\
-where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses wich an error in this test might incur are quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
+where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses which an error in this test might incur can be expected to be quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
 
 
 Inserting the sample figures into \eqref{eq:chisquarestatistic}, we observe 
@@ -1044,16 +1034,16 @@ b(k_1,...,k_n) = \left(\prod_{i=1}^n x_i\right)^2
 \end{equation}
 As \eqref{eq:SufficientLikelihood5} is not a function of $\theta$, $\sum_{i=1}^nx_i$ is a sufficient estimator for $\theta$.
 
-sufficient estimators
-Übung 5.6.5
+
+
+
 
 
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
 Let $X1, X2, ... , X10$ be a random sample from a gamma distribution with $\alpha =3$ and $\beta =1/\theta$. Suppose we believe that $\theta$ follows a gamma-distribution with $\alpha =3$ and $\beta = 2$.
-(following Hogg, McKean and Craig, exercise 11.2.2)
 
 \section{Posterior Distribution}
-To calculate the posterior distribution, we can formulate the following Bayesian model from the task assignment:
+To calculate the posterior distribution, the following Bayesian model can be formulated from the task assignment:
 \begin{equation}
 \begin{split}
 X_i|\theta &\sim \Gamma\left(3,\frac{1}{\theta}\right)\\
@@ -1061,14 +1051,14 @@ X_i|\theta &\sim \Gamma\left(3,\frac{1}{\theta}\right)\\
 \end{split}
 \label{eq:Bayesmodel}
 \end{equation}
-The Gamma distribution which both $X$ and $\Theta$ follow is given by Hogg et al. \cite[Definition~3.3.2]{hogg}:
+The Gamma distribution which both $X$ and $\Theta$ follow is given by Hogg et al. \cite[Equation~3.3.2]{hogg}:
 \begin{equation}
 \begin{split}
 f(x) = \frac{x^{\alpha-1}e^{-\frac{x}{\beta}}}{\Gamma(\alpha)\beta^\alpha}\quad x>0.
 \end{split}
 \label{eq:GammaDist}
 \end{equation}
-Generally, the posterior pdf $k(\theta|X)$ is given by Hogg et al. as: \cite[Definition 11.1.5]{hogg} 
+Generally, the posterior pdf $k(\theta|X)$ is given by Hogg et al. as: \cite[Equation~11.1.5]{hogg} 
 \begin{equation}
 \begin{split}
 k(\theta|x) = \frac{L(x|\theta)h(\theta)}{g_1(x)}
@@ -1089,105 +1079,119 @@ k(\theta|x) \propto L(x|\theta)h(\theta)
 \end{split}
 \label{eq:Posterior2}
 \end{equation}
-is sufficient to calculate the posterior distribution; the calculation of $g_1(x)$ can consequently be dropped. $L(x|\theta)$ is obtained by inserting the upper model of \eqref{eq:Bayesmodel} into \eqref{eq:GammaDist}:
+is sufficient to calculate the posterior distribution as $g_1(x)$ is a normalising factor in this context. The calculation of $g_1(x)$ can consequently be dropped. $L(x|\theta)$ is obtained by inserting the upper model of \eqref{eq:Bayesmodel} into \eqref{eq:GammaDist}:
 \begin{equation}
 \begin{split}
 L(x|\theta) 
 &= \prod_{i=1}^n \frac{x_i^{3-1}e^{-\frac{x_i}{\frac{1}{\theta}}}}{\Gamma(3)\left(\frac{1}{\theta}\right)^3} \\
 &= \prod_{i=1}^n \frac{x_i^{2}\theta^3e^{-x_i\theta}}{\Gamma(3)}\\
-&= \frac{x^{2n}\theta^{3n}e^{-\theta\sum_{i=1}^nx_i}}{\Gamma(3)^n}
+&= \frac{x^{2n}\theta^{3n}e^{-\theta\sum_{i=1}^nx_i}}{\Gamma(3)^n}.
 \end{split}
 \label{eq:bayeslikelyhood}
 \end{equation}
-
+The prior pdf is given by the lower part of \eqref{eq:Bayesmodel}:
 \begin{equation}
 \begin{split}
-h(\theta) = 
+h(\theta) = \frac{\theta^{3-1}e^{-\frac{\theta}{2}}}{\Gamma(3)2^3}
+=\frac{\theta^{2}e^{-\frac{\theta}{2}}}{8\Gamma(3)} .
 \end{split}
-\label{eq:Posterior}
+\label{eq:BayesPrior}
+\end{equation}
+Consequently, 
+\begin{equation}
+\begin{split}
+k(\theta|x) 
+\propto \frac{x^{2n}\theta^{3n}e^{-\theta\sum_{i=1}^nx_i}}{\Gamma(3)^n} \frac{\theta^{2}e^{-\frac{\theta}{2}}}{8\Gamma(3)},
+\end{split}
+\label{eq:calculatedposterior}
+\end{equation}
+assuming $0<\theta<\infty$. Dropping the constants results in 
+\begin{equation}
+\begin{split}
+k(\theta|x) 
+&\propto \theta^{3n}\theta^{2}e^{-\theta\sum_{i=1}^nx_i} e^{-\frac{\theta}{2}}\\
+&\propto \theta^{3n+2}e^{-\theta(\frac{1}{2}+\sum_{i=1}^nx_i)}
+\end{split}
+\label{eq:calculatedposterior2}
+\end{equation}
+Looking at the form of \eqref{eq:calculatedposterior2}, it is apparent that it is a $\Gamma$ function. $\alpha$ and $\beta$ can now be calculated using \eqref{eq:calculatedposterior2}, \eqref{eq:GammaDist} and $n=10$ from the assignment.
+\begin{equation}
+\begin{split}
+\alpha-1 &= 3n+2\\
+\alpha &= 33
+\end{split}
+\label{eq:postalpha}
+\end{equation}
+\begin{equation}
+\begin{split}
+-\frac{\theta}{\beta} &= -\theta\left(\frac{1}{2}+\sum_{i=1}^nx_i\right)\\
+\beta &= \frac{1}{\frac{1}{2}+\sum_{i=1}^nx_i}
+\end{split}
+\label{eq:postbeta}
+\end{equation}
+The posterior distribution is consequently 
+\begin{equation}
+\begin{split}
+\Theta|X &\sim \Gamma\left(33,\frac{1}{\frac{1}{2}+\sum_{i=1}^nx_i}\right).
+\end{split}
+\label{eq:Posteriormodel}
 \end{equation}
 
+\section{Bayes Point Estimate by Square-Error Loss Function}
+Assumed, $\bar{x} = 16.5$ is observed, what is the Bayes point estimate associated with the square-error loss function?
+Following Theorem 5.8.1 \cite{larsen2005introduction}, the Bayes estimate for $\theta$ is the mean of the posterior if a square-error loss function is used. As the distribution is a Gamma-distribution, the mean or expected value is calculated by 
+\begin{equation}
+\begin{split}
+E(X|\Theta) = \alpha\beta
+\end{split}
+\label{eq:expvalgamma}
+\end{equation}
+as proven in Chapter 3.3 \cite{hogg}. Using $\alpha = 33$ and 
+\begin{equation}
+\begin{split}
+\beta &= \frac{1}{\frac{1}{2}+\sum_{i=1}^nx_i}\\
+&=\frac{1}{\frac{1}{2}+n\bar{x}}\\
+&=\frac{1}{\frac{1}{2}+10\cdot16.5}\\
+&=\frac{1}{165.5},
+\end{split}
+\label{eq:postbeta}
+\end{equation}
+the mean computes to 
+\begin{equation}
+\begin{split}
+E(X|\Theta) = \frac{33}{165.5} \approx 0.1994.
+\end{split}
+\label{eq:expvalgammacalc}
+\end{equation}
 
-
-b) If the observed ��̅=16.5, what is the Bayes point estimate associated with the square-error loss function?
-c) What is the Bayes point estimate using the mode of the posterior distribution?
-
-
-
-
-
-\chapter{Latex}
-
-\section{Tools}
-
-MiKTeX: \url{https://miktex.org/download}
-TeXLive: \url{http://tug.org/texlive/}
- (or alternative LaTeX-systems).
- 
- A good editor is essential. Sometimes combined editors and compilers (e.g. TeXShop) can be really productive. Make sure you learn the use of synchronized navigation then.
-
-A vector graphic is one where strokes remain strokes even at the highest resolutions: e.g. the Figure~\eqref{fig:spiral} or the Logo on the \hyperref[titlePage]{Titelblatt} (notice: you can click from here to there).
-Many tools generate vector-graphics for plots from any data-set. E.g. Plotly (with the use of the Browser-Print), MatPlotLib or even OpenOffice, LibreOffice or MS-Excel.
-
-\section{Literature References}
-Here is an example of a reference with a page-number: \cite[S. 6]{DueckKo:2016}
-
-
-\section{Pictures}
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=8cm]{pics/spiral.pdf}
-\caption{A spiral... smooth vector-based with a clean parametrisation! \\ Nothing to do with \cite{Gage:18}}\label{fig:spiral}
-\end{figure}
-\FloatBarrier
-
-\section{Tables}
-
-\begin{table}[H]
-\small
-\centering
-\begin{tabular}{p{5cm}|l|p{3cm}}
-`` Industrial era '' &  ``Jobs '' & `` Wanted: Upgrade''' \\ \hline
-Parts exchanger & Fitter & mecatronics specialist \\
-eShop & reseller & `` Client-suggester'' \\
-`` Coding-guru''' & Softwaredesign & Whole-life designer \\
-JA! Gut \& Günstig & brand-names & `` Life-Style Feeling'' \\
-Internetbanking & Bank clerk & Customer adviser \\
-Robots & Specialist & Machine supervisor \\
-Bush & Gardener & Nature-sculptor \\
-Painting & Painter & Interior Design \\
- &  & \\
-\end{tabular}
-\caption[Downgrade and upgrade of job denominations]{Downgrade and Upgrade of job denominations \\ \ \ \ \cite{DueckKo:2016}}
-\label{tab:Downgrade and Upgrade of job denominations}
-\end{table} 
-
-\section{Listes}
-
-\begin{itemize}
- \itemsep0pt
- \item one
- \item twoi
- \item threei
-\end{itemize}
-
-\begin{enumerate}
- \itemsep0pt
- \item first
- \item second
- \item third
-\end{enumerate}
-
-
-\section{Formulæ}
-
-A formula can be written inline, e.g. as $ \frac{d}{dx}\mbox{arctg}(x) = \frac{1}{1+x^2}$ or, in centered math:
-
-\begin{equation}  \frac{d}{dx}\mbox{arctg}(x) = \frac{1}{1+x^2} \label{arctanderivative}\end{equation}
-
-Notice that formulæ that are centered start bigger (technically, they start in \verb+\displaystyle+) than they start inline (technically, they start in \verb+\textstyle+ all subsequents reductions, e.g. an exponent, goes to \verb+\scriptstyle+ then \verb+\scriptscriptstyle+). Indeed a best effort is made so that inline formulæ do not change the line height which would bother the eye of a reader.
-
-Formulæ can be given a number and a label. Numbering happens automatically with \verb+\begin{equation}+ and \verb+\end{equation}+ and can be avoided if enclosing the formula betwee \verb+\[+ and \verb+\]+. If using the \verb+\label+ macro inside, you can refer automatically to this equation using \verb+\ref{label}+. E.g. Thanks to equation~\ref{arctanderivative} one dare say that:
-
-\begin{equation} \int_0^t \frac{1}{1+x^2} dx = \mbox{arctan}(t) \end{equation}
+\section{Point Estimate by Mode}
+What is the Bayes point estimate using the mode of the posterior distribution?
+As the mode of a distribution is simply its highest point, it is the maximum of the posterior distribution. Consequently, the maximum is found by deriving the posterior distribution with respect to $\theta$, equating it to 0 and solving it. The posterior distribution is
+\begin{equation}
+\begin{split}
+f(\theta) = \frac{\theta^{32}e^{-\theta(0.5+\sum_{i=1}^n x_i)}}
+{\Gamma(33)\beta^\alpha},
+\end{split}
+\label{eq:postdistinserted}
+\end{equation}
+where the denominator is constant and can be excluded. The derivative computes to
+\begin{equation}
+\begin{split}
+f_\theta'(\theta) = 32\theta^{31}e^{-\theta\left(0.5+\sum_{i=1}^n x_i\right)}+e^{-\theta\left(0.5+\sum_{i=1}^n x_i\right)}\left(-0.5-\sum_{i=1}^n x_i\right)\theta^{32}
+\end{split}
+\label{eq:postdistderived}
+\end{equation}
+and results in the following roots if equated to 0:
+\begin{equation}
+\begin{split}
+\theta_1 = 0 \qquad \theta_2 = \frac{32}{0.5+\sum_{i=1}^n x_i}.
+\end{split}
+\label{eq:roots}
+\end{equation}
+$\theta_1 = 0$ is no solution for a gamma distribution. Consequently, $\theta_2$ is the only possible solution. Inserting $\bar{x} = 16.5$ from previous section results in 
+\begin{equation}
+\begin{split}
+\theta_2 = \frac{32}{0.5+10\cdot16.5} = \frac{32}{165.5} \approx 0.1934.
+\end{split}
+\label{eq:rootsN}
+\end{equation}
