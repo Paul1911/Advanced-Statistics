@@ -1,9 +1,6 @@
 \chapter{Workbook Assignment 1: Basic Probabilities and Visualisations}
 
 \section{Bernoulli Distribution}
-For each of the distributions below, please provide the requested graphics as well as the numeric results. In both cases, please provide how you realized these (calculations, code, steps…) and why it is the appropriate tools. Do not forget to include the scale of each graphics so a reader can read the numbers represented.
-
-\section{Bernoulli Distribution}
 
 Assumed a binary vote with outcome for or against is described by a Bernoulli distribution, with $P(vote = "for") = 0.69$. 
 Interpreting this as a one-trial Bernoulli experiment with the two outcomes for and against - represented by success and no success respectively - we can visualize it as displayed in figure~\eqref{fig:1a}.
@@ -261,7 +258,7 @@ As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we t
 \end{figure}
 \FloatBarrier
 
-Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would hear an owl approximately in five observations in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
+Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would have approximately five observations where we hear an owl in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
 
 Calculations and visualisations were done in Jupyter notebooks using the following python code:
 \begin{minted}{python}
@@ -582,7 +579,7 @@ x^2=r^2cos^2(\theta)& \qquad y^2=r^2sin^2(\theta)\\
 x^2+y^2&=r^2cos^2(\theta)sin^2(\theta)\\
 x^2+y^2&=r^2\\
 r &= \sqrt{x^2+y^2} = u_1(x,y)\\
-\label{eq:r^-1}
+\label{eq:r-1}
 \end{align*}
 and
 \begin{align*}
@@ -592,7 +589,7 @@ and
  \frac{y}{x} &= \frac{cos(\theta)}{sin(\theta)}\\
  \frac{y}{x} &= tan(\theta)\\
  \theta &= tan^{-1}(\frac{y}{x}) = u_2(x,y)
-\label{eq:theta^-1}
+\label{eq:theta-1}
 \end{align*}
 
 Using the transformation theorem proved in Hogg et al. \cite[Chapter~2.7]{hogg}, we get
@@ -732,7 +729,7 @@ Supposed we have a network router with a total bandwith until it breaks down des
 \begin{equation}
 \begin{split}
 %s(t) = f_S(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}
-s(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}
+s(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}.
 \end{split}
 \label{eq:exphardwarefailure}
 \end{equation}
@@ -741,25 +738,25 @@ s(t) =  \frac{1}{\theta} e^{-\frac{t}{\theta}}
 Assumed we have another backup device, the bandwidth total to failure of both devices is described by $T$, which is the sum of $S_1$ and $S_2$, which each are described by \eqref{eq:exphardwarefailure}. T is consequently
 \begin{equation}
 \begin{split}
-T = S_1 + S_2
+T = S_1 + S_2.
 \end{split}
 \label{eq:T}
 \end{equation}
-Both variables are random variables by task assignment and it can furthermore be assumed that they are independent as the performance of one device has no influence on the performance of another device. Furthermore, bandwidth is a continuous variable that cannot take negative values. With these assumptions about the variables ,the sum of both variables is consequently calculated by convolution, following Larsen and Marx \cite[Theorem~3.8.3]{larsen2005introduction}.
+Both variables are random variables by task assignment and it can furthermore be assumed that they are independent as the performance of one device has no influence on the performance of another device. Furthermore, bandwidth is a continuous variable that cannot take negative values. With these assumptions about the variables, the sum of both variables is consequently calculated by convolution, following Larsen and Marx \cite[Theorem~3.8.3]{larsen2005introduction}.
 \begin{equation}
 \begin{split}
-t(z) = \int_{-\infty}^\infty s(t)s(z-t)~dt
+t(z) = \int_{-\infty}^\infty s(t)s(z-t)~dt.
 \end{split}
 \label{eq:tz1}
 \end{equation}
 As only positive values can be obtained for the bandwidth, \eqref{eq:tz1} simplifies to 
 \begin{equation}
 \begin{split}
-t(z) = \int_{0}^zs(t)s(z-t)~dt
+t(z) = \int_{0}^zs(t)s(z-t)~dt.
 \end{split}
 \label{eq:tz2}
 \end{equation}
-inserting the density of $S$ yields
+Inserting the density of $S$ yields
 \begin{equation}
 \begin{split}
 t(z) 
@@ -767,7 +764,7 @@ t(z)
 \left(\frac{1}{\theta} e^{-\frac{z-t}{\theta}}\right)~dt\\
 &= \frac{1}{\theta^2} e^{-\frac{z}{\theta}}\int_{0}^z~dt\\
 &= \frac{z}{\theta^2} e^{-\frac{z}{\theta}}\\
-&= f_T(z;~\theta)
+&= f_T(z;~\theta).
 \end{split}
 \label{eq:tz3}
 \end{equation}
@@ -778,7 +775,7 @@ Given an experiment with the dual-router-system yielding a sample $T_1$, $T_2$, 
 Following Definition 5.2.1 in Larsen and Marx \cite{larsen2005introduction}, the likelihood function is described by
 \begin{equation}
 \begin{split}
-L(\theta) = \prod_{i=1}^n f_Y(y_i;~\theta)
+L(\theta) = \prod_{i=1}^n f_Y(y_i;~\theta),
 \end{split}
 \label{eq:LikelyhoodFunctionDefinition}
 \end{equation}
@@ -795,7 +792,7 @@ and simplifies to
 \begin{equation}
 \begin{split}
 L(\theta) 
-&= \theta^{-2n}\left(\prod_{i=1}^n z_i\right)e^{-\frac{1}{\theta}\sum_{i=1}^n z_i}
+&= \theta^{-2n}\left(\prod_{i=1}^n z_i\right)e^{-\frac{1}{\theta}\sum_{i=1}^n z_i}.
 \end{split}
 \label{eq:LikelyhoodFunction3}
 \end{equation}
@@ -803,7 +800,7 @@ To calculate the maximum likelihood, equation \eqref{eq:LikelyhoodFunction3} mus
 \begin{equation}
 \begin{split}
 \ln~L(\theta) 
-&= -2n\ln\theta + \ln\left(\prod_{i=1}^n z_i\right)-\frac{1}{\theta}\sum_{i=1}^n z_i
+&= -2n\ln\theta + \ln\left(\prod_{i=1}^n z_i\right)-\frac{1}{\theta}\sum_{i=1}^n z_i.
 \end{split}
 \label{eq:LikelyhoodFunction4}
 \end{equation}
@@ -811,39 +808,39 @@ The derivation then yields
 \begin{equation}
 \begin{split}
 \frac{d\ln~L(\theta)}{d\theta}
-&= \frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i
+&= \frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i,
 \end{split}
 \label{eq:LikelyhoodFunction5}
 \end{equation}
 which results in the maximum likelihood function when equated to $0$ and solved for $\theta$:
 \begin{equation}
 \begin{split}
-\frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i = 0
+\frac{-2n}{\theta}+\frac{1}{\theta^2}\sum_{i=1}^n z_i = 0.
 \end{split}
 \label{eq:LikelyhoodFunction6}
 \end{equation}
 The maximum likelihood estimator $\theta_e$ is consequently 
 \begin{equation}
 \begin{split}
-\theta_e =\frac{1}{2n}\sum_{i=1}^n z_i
+\theta_e =\frac{1}{2n}\sum_{i=1}^n z_i.
 \end{split}
 \label{eq:MLE}
 \end{equation}
 In an experiment with $n=5$ observations measuring the total bandwidth to failure, the following results were observed:
 \begin{center}
-16, 86, 96, 17, 339
+16, 86, 96, 17, 339.
 \end{center}
 To estimate the model-parameter with the maximum likelihood, the values are inserted into \eqref{eq:MLE}:
 \begin{equation}
 \begin{split}
-\theta_e =\frac{1}{2\cdot5}(16+86+96+17+339) = 55.4
+\theta_e =\frac{1}{2\cdot5}(16+86+96+17+339) = 55.4.
 \end{split}
 \label{eq:MLECalculation}
 \end{equation}
 To calculate the expectation of the bandwidth, we reuse equation \eqref{eq:ExpValueHogg} which, applied to this task, is
 \begin{equation}
 \begin{split}
-E(T) = \int_0^\infty z\frac{z}{\theta^2} e^{-\frac{z}{\theta}}~dz\\
+E(T) = \int_0^\infty z\frac{z}{\theta^2} e^{-\frac{z}{\theta}}~dz,\\
 \end{split}
 \label{eq:expvalue3}
 \end{equation}
@@ -852,7 +849,7 @@ and calculates to
 \begin{split}
 E(T) 
 &= \int_0^\infty z\frac{z}{55.4^2} e^{-\frac{z}{55.4}}~dz\\
-&= 110.8
+&= 110.8.
 \end{split}
 \label{eq:expvalue4}
 \end{equation}
@@ -866,9 +863,9 @@ Equation \eqref{eq:expvalue4} was calculated using symbolab \cite{symbolab} with
 Assumed we are producing high-quality hammers in our factory and want to model the production quality. From the last 1000 produced hammers, we observed an average weight of $\mu_1=971~g$ and a standard deviation of $\sigma_1 = 42~g$. As $n = 1000$, we assume that we can treat the point estimates for the mean and the standard deviation as population parameters.
 
 Production inaccuracies are usually normally dispersed, and as we neither have access to the raw data of individual observations nor have information on any skewness or non-normal behaviour, a normal distribution $N(\mu, \sigma^2)$ is assumed.
-Hogg et al. \cite[Definition~3.4.1]{hogg} define the normal distribution as follows: 
+The normal distribution is defined as follows \cite[Definition~3.4.1]{hogg}: 
 
-\begin{equation} \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace}{2\sigma ^2 }}}
+\begin{equation} \frac{1}{{\sigma \sqrt {2\pi } }}e^{{{ - \left( {x - \mu } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - \mu } \right)^2 } {2\sigma ^2 }}} \right. \kern-\nulldelimiterspace}{2\sigma ^2 }}}.
 \label{eq:normaldist}
 \end{equation}
 
@@ -885,7 +882,7 @@ Using the normal distribution as approximation implies accepting several assumpt
 
 Using \eqref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\sigma_1 = 42$, the following model is proposed: 
 
-\begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{3528 }}}
+\begin{equation} \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {2(42) ^2 }}} \right. \kern-\nulldelimiterspace}{2(42) ^2 }}} ~~~=~~~ \frac{1}{{42 \sqrt {2\pi } }}e^{{{ - \left( {x - 971 } \right)^2 } \mathord{\left/ {\vphantom {{ - \left( {x - 971 } \right)^2 } {7056 }}} \right. \kern-\nulldelimiterspace}{3528 }}}.
 \label{eq:normaldistadapted}
 \end{equation}
 
@@ -894,7 +891,7 @@ Using \eqref{eq:normaldist} with the provided parameters of $\mu_1 = 971$ and $\
 Assumed a new production system for hammer production is tested. A random sample output of hammers of this new production output returns the following weights in grams: \\
 
 \begin{center}
-    1009, 1069, 966, 952, 1084, 897, 909, 995, 975, 983
+    1009, 1069, 966, 952, 1084, 897, 909, 995, 975, 983.
 \end{center}
 
 How do we know if this new system's weight accuracy is better than the old system's accuracy, i.e. how do we find out whether the weight variance of the new system is lower than the variance of the old system?
@@ -903,7 +900,7 @@ To answer this question, we have to perform a statistical test comparing the var
 
 \begin{center}
 $H_0~~:~~ \sigma^2_2~=~\sigma^2_1$\\ 
-$H_1~~:~~ \sigma^2_2~<~\sigma^2_1$
+$H_1~~:~~ \sigma^2_2~<~\sigma^2_1$.
 \end{center}
 
 where $\sigma^2_1$ is defined as the population variance of the old production system and $\sigma^2_2$ is defined as the population variance of the new production system.
@@ -912,43 +909,43 @@ Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi sq
 
 \begin{center}
 $H_0~~:~~ \sigma^2_2~=~1764$\\ 
-$H_1~~:~~ \sigma^2_2~<~1764$
+$H_1~~:~~ \sigma^2_2~<~1764$.
 \end{center}
 
 Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the Chi Square test statistic is given by 
 
 \begin{equation}
-\chi^2 = \frac{(n-1)s_2^2}{\sigma_1^2}
+\chi^2 = \frac{(n-1)s_2^2}{\sigma_1^2},
 \label{eq:chisquarestatistic}
 \end{equation}
 
 with the decision rule of rejecting $H_0$ if 
 \\
 \begin{equation}
-\chi^2 \leq \chi^2_{1-\alpha,n-1}
+\chi^2 \leq \chi^2_{1-\alpha,n-1},
 \label{eq:decisionrule}
 \end{equation}
 \\
-where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses which an error in this test might incur can be expected to be quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
+where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses, which an error in this test might incur, can be expected to be quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
 
 
 Inserting the sample figures into \eqref{eq:chisquarestatistic}, we observe 
 \begin{equation}
-\chi^2 = \frac{(10-1) \cdot \frac{32594.9}{9}}{1764} = \frac{32594.9}{1764} \approx 18.48
+\chi^2 = \frac{(10-1) \cdot \frac{32594.9}{9}}{1764} = \frac{32594.9}{1764} \approx 18.48.
 \label{eq:chisqstatcalc}
 \end{equation}
 
 Using the lower-tail critical values of chi-square distribution of the Engineering Statistics Handbook \cite{nist}, the critical value is approximated by 
 \\
 \begin{equation}
-\chi^2_{0.95,9}\approx 3.33
+\chi^2_{0.95,9}\approx 3.33,
 \label{eq:criticalvalue}
 \end{equation}
 \\
 with the corresponding p-value of
 \\
 \begin{equation}
-p = P(\chi^2 < 18.48) = 1-0.03 = 0.97
+p = P(\chi^2 < 18.48) = 1-0.03 = 0.97,
 \label{eq:pvalue}
 \end{equation}
 \\
@@ -965,21 +962,6 @@ or, put differently, the p-value is much larger than our $\alpha$, we can not re
 
 
 
-
--formulate Hypotheses\\
--what test\\
--what decision rule\\
--what p value/critical values\\
--do calculations
-
-
-
-
-we can use the Central Limit Theorem as proven by Hogg et al. \cite[Theorem~5.3.1]{hogg}. 
-If we now want to model the weight distribution of our hammers, the best assumption is a normal distribution. The 1000 produced hammers can be interpreted as a random sample of the population of hammers with $n = 1000$. This $n$ is $>30$, so the central limit theorem can be applied here. 
-
-
-
 \chapter{Workbook Assignment 5: Sufficient Statistics}	
 Let $X_1,~X_2,~...,~X_n$ be the random sample of a positive random variable $X$ having the density function 
 \begin{equation}
@@ -990,7 +972,7 @@ f_X(x;~\theta) = \frac{1}{2!~\theta^3}x^2e^{-\frac{x}{\theta}}
 \end{equation}
 with one parameter $\theta \in \mathbb{R}+$. Find an estimator for $\theta$ that is sufficient. 
 \\
-Larsen and Marx define Sufficient Statistics as follows: "Let $X_1 = k_1, . . . , X_n = k_n$ be a random sample of size $n$ from $p_X(k;~\theta)$. The statistic $\hat{\theta} = h(X_1, . . . , X_n)$ is sufficient for $\theta$ if the likelihood function, $L(\theta)$, factors into the product of the pdf for $\hat{\theta}$ and a constant that does not involve $\theta$ — that is, if
+Larsen and Marx define sufficient statistics as follows: "Let $X_1 = k_1, . . . , X_n = k_n$ be a random sample of size $n$ from $p_X(k;~\theta)$. The statistic $\hat{\theta} = h(X_1, . . . , X_n)$ is sufficient for $\theta$ if the likelihood function, $L(\theta)$, factors into the product of the pdf for $\hat{\theta}$ and a constant that does not involve $\theta$ — that is, if
 \begin{equation}
 \begin{split}
 L(\theta) 
@@ -1040,7 +1022,7 @@ As \eqref{eq:SufficientLikelihood5} is not a function of $\theta$, $\sum_{i=1}^n
 
 
 \chapter{Workbook Assignment 6: Bayesian Estimates}	
-Let $X1, X2, ... , X10$ be a random sample from a gamma distribution with $\alpha =3$ and $\beta =1/\theta$. Suppose we believe that $\theta$ follows a gamma-distribution with $\alpha =3$ and $\beta = 2$.
+Let $X_1, X_2, ... , X_{10}$ be a random sample from a gamma distribution with $\alpha =3$ and $\beta =1/\theta$. Suppose we believe that $\theta$ follows a gamma-distribution with $\alpha =3$ and $\beta = 2$.
 
 \section{Posterior Distribution}
 To calculate the posterior distribution, the following Bayesian model can be formulated from the task assignment:
