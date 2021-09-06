@@ -236,7 +236,7 @@ solve 0.75 = 1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y}+\dfrac{32}{45}
 \mathrm{e}^{-0.25y} \right)
 \end{lstlisting}
 
-As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \eqref{fig:1c1} as points whereas in figure \eqref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i*25$ percent of PDF \eqref{eq:pdf}'s area under the curve to its left. 
+As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we tried to calculate the fourth quartile $y_4$. The first three quartiles are visualised in figure \eqref{fig:1c1} as points whereas in figure \eqref{fig:1c2}, they are displayed as vertical lines to indicate that we want to highlight that the individual quartile $y_i$ has $i\cdot25$ percent of PDF \eqref{eq:pdf}'s area under the curve to its left. 
 
 \begin{figure}[h]
 \centering
@@ -246,7 +246,7 @@ As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we t
 \end{figure}
 \FloatBarrier
 
-Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would have approximately five observations where we hear an owl in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. Id can also be magnified in this document as it is a vector graphic.
+Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would have approximately five observations where we hear an owl in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. It can also be magnified in this document as it is a vector graphic.
 Calculations and visualisations were done in Jupyter notebooks using the following python code:
 \begin{minted}{python}
 import numpy as np
@@ -465,7 +465,6 @@ Assumed one has recorded mappings of X and Y values, what is an appropriate way 
 (4.118, 226.05), (-1.834, -534.54), (-1.882, 610.91), (8.677, 70.11) \\
 
 As the variables in the data are both continuous and the question addresses the calculation of correlation, the optimal visualisation is a scatter diagram as for example figure~\eqref{fig:WorkbookAssignment2a}. Other possibilities are excluded as there is not much more information provided on the data set. A line graph for example would be appropriate if we had information that the observations show some development over some time domain. 
-
 \begin{figure}[h]
 \centering
 \includegraphics[width=16cm]{pics/WorkbookAssignment2a.pdf}
@@ -473,27 +472,24 @@ As the variables in the data are both continuous and the question addresses the 
 \label{fig:WorkbookAssignment2a}
 \end{figure}
 \FloatBarrier
-
-Looking at the scatter plot, one can observe that the data is quite evenly dispersed; No pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\eqref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value \cite{mathcenter}. 
-
-
+Looking at the scatter plot, one can observe that the data is quite evenly dispersed; no pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\eqref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value \cite{mathcenter}. 
 \begin{equation}  
 E(X) = \sum \left[x * P(x)\right]
 \label{eq:ExpValDiscrete}
 \end{equation}
-
 The results are consequently $E(X) = -1.5944$ and $E(Y) = 3.3250$.
-
-The sample covariance is defined in Equation~\eqref{eq:COV}, where $\bar{x} = E(X)$ and $\bar{y} = E(Y)$ (adapted from~\cite{bruce2017practical}).
-
+Following Bruce and Bruce \cite{bruce2017practical}, the variance for a sample is calculated by 
+\begin{equation}  
+s^2 = \frac{\sum{(x-\bar{x})^2}}{n-1}.
+\label{eq:ExpValDiscrete}
+\end{equation}
+This computes to $s^2_x = -1.5944$ and $s^2_y = 3.3250$, where $\bar{x} = E(X)$ and $\bar{y} = E(Y)$.
+The sample covariance is defined in Equation~\eqref{eq:COV} (adapted from Bruce and Bruce \cite{bruce2017practical}).
 \begin{equation}  s_{xy} = \frac{\sum(x_{i}-\bar{x})(y_{i}-\bar{y})}{n-1}
 \label{eq:COV}
 \end{equation}
-
 Applying the formula to the provided data, $s_{xy} = 284.23$ can be observed. This indicates a positive relationship.
-
 The calculations were done using Python 3.9 and the following code:
-
 \begin{minted}{python}
 import numpy as np
 import pandas as pd
@@ -538,7 +534,7 @@ f_\Theta(\theta) =
 f_R(r) = 
 \begin{cases} 
       1 & for~r\in[0,1]\\
-      0&elsewhere
+      0&elsewhere.
    \end{cases}
 \label{eq:r_untransformed}
 \end{equation}
@@ -549,7 +545,7 @@ Joining these distributions returns the following joint pdf:
 f_{R,\Theta}(r,\theta) = 
 \begin{cases} 
       \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
-      0&elsewhere
+      0&elsewhere.
    \end{cases}
 \end{split}
 \label{eq:joint_pdf_untransformed}
@@ -571,7 +567,7 @@ and
  \frac{x}{cos(\theta)} &= \frac{y}{sin(\theta)}\\
  \frac{y}{x} &= \frac{cos(\theta)}{sin(\theta)}\\
  \frac{y}{x} &= tan(\theta)\\
- \theta &= tan^{-1}(\frac{y}{x}) = u_2(x,y)
+ \theta &= tan^{-1}\left(\frac{y}{x}\right) = u_2(x,y).
 \label{eq:theta-1}
 \end{align*}
 
@@ -579,7 +575,7 @@ Using the transformation theorem proved in Hogg et al. \cite[Chapter~2.7]{hogg},
  
 \begin{equation}
 \begin{split}
-f_{X,Y}(x,y) = f_{R,\Theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot |J|
+f_{X,Y}(x,y) = f_{R,\Theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot |J|,
 %f_{X,Y}(x,y) = f_{r,\theta}\left(u_1,u_2\right)\right) \cdot |J|
 \end{split}
 \label{eq:transtheorem}
@@ -607,7 +603,7 @@ where
 \right|\\[2ex]
 &= \frac{x}{\sqrt{x^2+y^2}} \cdot \frac{x}{y^2+x^2} -\frac{y}{\sqrt{x^2+y^2}}  \cdot \left(-\frac{y}{y^2+x^2}\right)\\[2ex]
 &= \frac{x^2+y^2}{(x^2+y^2)^{3/2}}\\[2ex]
-&=\frac{1}{\sqrt{x^2+y^2}}
+&=\frac{1}{\sqrt{x^2+y^2}},
 \end{split}
 \label{eq:jacobiandet}
 \end{equation}
@@ -624,7 +620,7 @@ Substituting \eqref{eq:jacobiandet} into \eqref{eq:transtheorem}, we get
 \begin{equation}
 \begin{split}
 f_{X,Y}(x,y) &= f_{r,\theta}\left(\sqrt{x^2+y^2},tan^{-1}\left(\frac{y}{x}\right)\right) \cdot \frac{1}{\sqrt{x^2+y^2}}\\[2ex]
-f_{X,Y}(x,y) &= \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqrt{x^2+y^2}}
+f_{X,Y}(x,y) &= \frac{1}{2\pi} \cdot \frac{1}{\sqrt{x^2+y^2}} = \frac{1}{2\pi\sqrt{x^2+y^2}},
 %\begin{cases} 
 %      \frac{1}{2\pi} & \theta \in [0,2\pi),~ r\in[0,1]\\
 %      0&elsewhere
@@ -638,7 +634,7 @@ To calculate their individual densities, the marginal distributions are needed. 
 
 \begin{equation}
 \begin{split}
-f_{X}(x) = \int_{0}^{\sqrt{1-x^2}}\frac{1}{2\pi\sqrt{x^2+y^2}} dy
+f_{X}(x) = \int_{0}^{\sqrt{1-x^2}}\frac{1}{2\pi\sqrt{x^2+y^2}} dy,
 \end{split}
 \label{eq:marginalX}
 \end{equation}
@@ -661,29 +657,29 @@ using Symbolab \cite{symbolab} with the following code:
 PDF \eqref{eq:transtheoremcomplete} is symmetric in $x$ and $y$ as $f_{X,Y}(x,y) = f_{Y,X}(y,x)$. Consequently, $f_Y(y)$ has similar form:
 \begin{equation}
 \begin{split}
-f_{Y}(y) = \frac{1}{2\pi }\ln\left(\frac{\sqrt{1-y^2}+1}{y}\right) \quad y \in (0,1)
+f_{Y}(y) = \frac{1}{2\pi }\ln\left(\frac{\sqrt{1-y^2}+1}{y}\right) \quad y \in (0,1).
 \end{split}
 \label{eq:marginalYcalculated}
 \end{equation}
 To calculate the expected value, equation \eqref{eq:ExpValueHogg} is used again:
 \begin{equation}
 \begin{split}
-E(X) = \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
-E(X) = \frac{1}{2\pi}\int_0^1  x\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
-E(X) = \frac{1}{4\pi } \cdot \left[x^2\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)-\sqrt{1-x^2}\right]_0^1\\
-E(X) = E(Y) = \frac{1}{4\pi} \approx 0.07958
+E(X) &= \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
+E(X) &= \frac{1}{2\pi}\int_0^1  x\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right) dx\\
+E(X) &= \frac{1}{4\pi } \cdot \left[x^2\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)-\sqrt{1-x^2}\right]_0^1\\
+E(X)&= \frac{1}{4\pi} \approx 0.07958.
 \end{split}
 \label{eq:expvalF_X}
 \end{equation}
-as again the same value calculates for $Y$ due to the symmetry of the distribution.
+$E(X) = E(Y)$, as again the same value calculates for $Y$ due to the symmetry of the distribution.
 WolframAlpha \cite{wolfalph} was used for this calculation with the following input:
 \begin{lstlisting}
 \int_0^1  \frac{x}{2\pi }\ln \left(\frac{\sqrt{1-x^2}+1}{x}\right)
 \end{lstlisting}
 
-To calculate the second moment, the variance, equation \eqref{eq:HoggVariance} is recalled:
+To calculate the second moment, the variance - equation \eqref{eq:HoggVariance} - is recalled:
 \[
-Var(x) = E(X^2)-(E(X))^2
+Var(x) = E(X^2)-(E(X))^2,
 \]
 where
 \begin{equation}
@@ -699,7 +695,7 @@ This calculation was done in WolframAlpha \cite{wolfalph} with the following inp
 Consequently, 
 \begin{equation}
 \begin{split}
-Var(X) = Var(Y) = \frac{1}{24}- \left(\frac{1}{4\pi}\right)^2 = \frac{2\pi ^2-3}{48\pi ^2} \approx 0.1581
+Var(X) = Var(Y) = \frac{1}{24}- \left(\frac{1}{4\pi}\right)^2 = \frac{2\pi ^2-3}{48\pi ^2} \approx 0.1581.
 \end{split}
 \label{eq:VarXcalculated}
 \end{equation}
@@ -888,7 +884,7 @@ $H_1~~:~~ \sigma^2_2~<~\sigma^2_1$.
 
 where $\sigma^2_1$ is defined as the population variance of the old production system and $\sigma^2_2$ is defined as the population variance of the new production system.
 
-Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi square distribution is needed for inferences on variances. To test our sample variance $s_2^2 = \frac{32594.9}{9} \approx 3621.66 $ against the variance $\sigma^2_1 = 42^2 = 1764$, we can now use the Chi Square Test or the F-Test. As we earlier assumed that $\sigma_1$ is the population variance instead of a sample variance, we do not need to rely on F-Test and can work with the Chi Square Test. The hypotheses can then be formulated as 
+Following Larsen and Marx \cite[Chapter 7.5]{larsen2005introduction}, the chi square distribution is needed for inferences on variances. To test our sample variance $s_2^2 = \frac{32594.9}{9} \approx 3621.66 $ against the variance $\sigma^2_1 = 42^2 = 1764$, we can now use the Chi Square Test or the F-Test. As we earlier assumed that $\sigma_1$ is the population variance instead of a sample variance, we do not need to rely on an F-Test and can work with the Chi Square Test. The hypotheses can then be formulated as 
 
 \begin{center}
 $H_0~~:~~ \sigma^2_2~=~1764$\\ 
@@ -909,7 +905,7 @@ with the decision rule of rejecting $H_0$ if
 \label{eq:decisionrule}
 \end{equation}
 \\
-where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses, which an error in this test might incur, can be expected to be quite minor, there is no need to increase the confidence interval and to work with a smaller value of $\alpha$.
+where our error probability $\alpha$ is our level of significance. An usual assumption is a 95 percent confidence interval, which results in $\alpha = 0.05$. As the losses, which an error in this test might incur, can be expected to be quite minor, there is no need to increase the confidence interval and to work with a smaller $\alpha$.
 
 
 Inserting the sample figures into \eqref{eq:chisquarestatistic}, we observe 
@@ -965,12 +961,12 @@ L(\theta)
 \label{eq:SufficientLikelihood}
 \end{equation}
 A similar statement holds if the data consist of a random sample $Y_1~=~y_1,...,Y_n~=~ y_n$ drawn from a coninuous pdf $f_Y(y;\theta)$." \cite{larsen2005introduction}.
-This can be constructed for the given density function \eqref{eq:suffpdf}. Firstly, to calculate the likelihood function, its definition \eqref{eq:LikelyhoodFunctionDefinition} is used for \eqref{eq:SufficientLikelihood}.
+This can be constructed for the given density function \eqref{eq:suffpdf}. Firstly, to calculate the likelihood function, its definition \eqref{eq:LikelyhoodFunctionDefinition} is used.
 \begin{equation}
 \begin{split}
 L(\theta) 
 &= \prod_{i=1}^n f_X(x_i;~\theta)\\
-&= \prod_{i=1}^n \frac{1}{2!~\theta^3}x_i^2e^{-\frac{x_i}{\theta}}\\
+&= \prod_{i=1}^n \frac{1}{2!~\theta^3}x_i^2e^{-\frac{x_i}{\theta}}.\\
 \end{split}
 \label{eq:SufficientLikelihood2}
 \end{equation}
@@ -979,7 +975,7 @@ This can be simplified to
 \begin{split}
 L(\theta) 
 &= \frac{1}{2^n\theta^{3n}}\prod_{i=1}^n x_i^2e^{-\frac{x_i}{\theta}}\\
-&= \frac{1}{2^n\theta^{3n}} e^{-\frac{1}{\theta}\sum_{i=1}^nx_i} \left(\prod_{i=1}^n x_i\right)^2\\
+&= \frac{1}{2^n\theta^{3n}} e^{-\frac{1}{\theta}\sum_{i=1}^nx_i} \left(\prod_{i=1}^n x_i\right)^2.\\
 \end{split}
 \label{eq:SufficientLikelihood3}
 \end{equation}
@@ -993,7 +989,7 @@ p_{\hat{\theta}}(\theta_e;\theta) = \frac{1}{2^n\theta^{3n}} e^{-\frac{1}{\theta
 and
 \begin{equation}
 \begin{split}
-b(k_1,...,k_n) = \left(\prod_{i=1}^n x_i\right)^2
+b(k_1,...,k_n) = \left(\prod_{i=1}^n x_i\right)^2.
 \end{split}
 \label{eq:SufficientLikelihood5}
 \end{equation}
@@ -1107,7 +1103,7 @@ Assumed, $\bar{x} = 16.5$ is observed, what is the Bayes point estimate associat
 Following Theorem 5.8.1 \cite{larsen2005introduction}, the Bayes estimate for $\theta$ is the mean of the posterior if a square-error loss function is used. As the distribution is a Gamma-distribution, the mean or expected value is calculated by 
 \begin{equation}
 \begin{split}
-E(X|\Theta) = \alpha\beta
+E(X|\Theta) = \alpha\beta,
 \end{split}
 \label{eq:expvalgamma}
 \end{equation}
@@ -1130,7 +1126,7 @@ E(X|\Theta) = \frac{33}{165.5} \approx 0.1994.
 \end{equation}
 
 \section{Point Estimate by Mode}
-What is the Bayes point estimate using the mode of the posterior distribution?
+What is the Bayes point estimate using the mode of the posterior distribution?\\
 As the mode of a distribution is simply its highest point, it is the maximum of the posterior distribution. Consequently, the maximum is found by deriving the posterior distribution with respect to $\theta$, equating it to 0 and solving it. The posterior distribution is
 \begin{equation}
 \begin{split}
