@@ -16,17 +16,12 @@ Interpreting this as a one-trial Bernoulli experiment with the two outcomes for 
 
 
 As this is a one-trial Bernoulli experiment, we can only observe the two outcomes $success = for$ and $no~success = against$. With provided information that $P(vote = "for") = 0.69$, we can calculate that $P(vote=”against”) = 1 - P(vote = "for") = 0.31$. This is visualized by the two bars in figure~\eqref{fig:1a}. Following Hogg et al. \cite[Chapter~3.1]{hogg}, the expected value of X, described by a Bernoulli Distribution, is: 
-
 \begin{equation}  \mu = E(X) = (0)(1-p) + (1)(p) = p
-\label{eq:expvaluebernoulli}\end{equation}
-
+\label{eq:expvaluebernoulli}
+\end{equation}
 Applied to our problem,  $ \mu = p = P(vote = "for") = 0.69 $.
-
 This means if we would repeat the experiment one hundred times, we expect to observe 69 successes. 
-
-
 This result was achieved using Python 3.9 and the following code:
-
 \begin{minted}{python}
 from scipy.stats import bernoulli
 import numpy as np
@@ -56,7 +51,7 @@ Assumed we try to model the number of meteorites falling on an ocean each year -
 
 The Poisson distribution is a discrete probability distribution representing the number of events occurring in a defined period. It assumes the events occur with a known constant mean rate and that the events are independent of the time since the last event \cite[Chapter~4.6]{illowsky2018introductory}.
 
-The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as you cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. Additionally assuming $\mu = 64$ allows an exemplary visualisation as in figure \eqref{fig:1b}.
+The event of a meteor impacting the world in a given year fulfills all requirements for such distribution. The event itself is of discrete nature as one cannot have a fractional count of impacts, and we assume meteorite impacts occur with a known constant mean rate and the impacts themselves are independent of the time since the last event. We do not know, whether the variance of the distribution is equal to the mean, but even if it was, we could relax this assumption by using the Poisson-based Gamma-Poisson distribution. For this exercise, we assume $\sigma^2 = \mu$. Additionally assuming $\mu = 64$ allows an exemplary visualisation as in figure \eqref{fig:1b}.
 
 \begin{figure}[h]
 \centering
@@ -123,25 +118,19 @@ fig.write_image("figures/1b.pdf")
 \end{minted}
 
 \section{Exponential Distributions}
-Assuming the probability that you need to wait more than the random variable of y hours to hear a owl from your room is described by:
-
-\begin{equation}  f(Y > y) = 0.2\overline{8}\mathrm{e}^{-0.5y} + 0.7\overline{1}\mathrm{e}^{-0.25y}
+Assumed the probability that you need to wait more than the random variable of y hours to hear an owl from your room is described by:
+\begin{equation}  f(Y > y) = 0.2\overline{8}\mathrm{e}^{-0.5y} + 0.7\overline{1}\mathrm{e}^{-0.25y}.
 \label{eq:initcdf}
 \end{equation}
 To facilitate calculations, we reformulate the periodic numbers to fractions:
-
-\begin{equation}  f(Y > y) = \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y}
+\begin{equation}  f(Y > y) = \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y}.
 \label{eq:initcdffractioned}
 \end{equation}
-
 Suspecting that such events are usually exponentially distributed, we reformulate the probability in equation \eqref{eq:truecdf} to the conventional expression \cite{deisenroth}. 
-
 \begin{equation}  F_Y(y) = f(Y \leq y) =1-\left( \dfrac{13}{45}\mathrm{e}^{-0.5y} + \dfrac{32}{45}\mathrm{e}^{-0.25y} \right)
 \label{eq:truecdf}
 \end{equation}
-
 As $Y$ and $y$ are defined as time and time cannot be negative in this case, the domain of the function we are interested in is $[0,+\infty]$.
-
 \begin{equation} f'_Y(y) = f''(Y \leq y) = 
 \dfrac{-8\mathrm{e}^{-\frac{y}{4}}-13\mathrm{e}^{-\frac{y}{2}}}{180}
 \label{eq:secderivative}
@@ -189,7 +178,7 @@ f_Y(y) = \dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90}
 \end{figure}
 \FloatBarrier
 
-The graphical representation of the PDF in figure \eqref{fig:1c2} also includes the mean value. This is calculated using equation \eqref{eq:ExpValueHogg} following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
+The graphical representation of the PDF in figure \eqref{fig:1c2} also includes the mean value. This is calculated using equation \eqref{eq:ExpValueHogg}, following the definition of an expectation for a random variable in Hogg et al. \cite[Definition~1.8.1]{hogg}.
 \begin{equation}
 E(X) = \int^{+\infty}_{-\infty} x f_X(x) ~ dx
 \label{eq:ExpValueHogg}
@@ -199,7 +188,7 @@ Conditions for this to be true are that equation \eqref{eq:ExpValueHoggcondition
 \int^{+\infty}_{-\infty} |x| f_X(x) ~ dx < \infty
 \label{eq:ExpValueHoggcondition}
 \end{equation}
-By the task assignment, we know that $y$ is a continuous random variable. By equation \eqref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, the left hand side of inequality \eqref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \eqref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \eqref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
+By the task assignment, we know that $Y$ is a continuous random variable. By equation \eqref{eq:pdf}, we calculated $f_Y(y)$ as the PDF of $y$. Lastly, as $y \in [0,\infty)$, the left hand side of inequality \eqref{eq:ExpValueHoggcondition} reduces to the right hand side of equation \eqref{eq:ExpValueHogg} and the lower limit of the integral changes to 0. Consequently, if the mean or expected value $E(Y) < \infty$, it is valid. The calculation for our random variable $y$ in \eqref{eq:ExpValueCalculation} returns $E(Y) < \infty$, we can therefore accept $3.4\overline{2}$ hours as our expected value $E(Y)$ for the waiting time to hear an owl. 
 %
 \begin{equation}
 E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\mathrm{e}^{-\frac{y}{4}}+13\mathrm{e}^{-\frac{y}{2}}}{90} \right) ~dy = \frac{154}{45} = 3.4\overline{2}
@@ -207,7 +196,6 @@ E(Y) = \int^{+\infty}_{0} y f_Y(y) ~ dy = \int^{+\infty}_{0} y\left(\dfrac{16\ma
 \end{equation}
 Following Hogg et al., the first moment or mean $\mu = E(X)$, if $X$ is a random variable with existing expectation \cite[Definition~1.9.1]{hogg}. This is the case for $Y$. Consequently, we can also assume that the mean value $\mu = E(X) = 3.4\overline{2}$. 
 \\
-
 To calculate the second moment, the variance $\sigma^2$, we use definition 1.9.2 by Hogg et al. \cite{hogg} as equation \eqref{eq:HoggVariance}.
 \begin{equation}
 \sigma^2 = E(X^2) - \mu^2
@@ -258,8 +246,7 @@ As $\lim_{y\to\infty} F_Y(y)= 1$, we would only get $\infty$ as a result if we t
 \end{figure}
 \FloatBarrier
 
-Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would have approximately five observations where we hear an owl in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. 
-
+Lastly, figure \eqref{fig:1c4} displays the PDF as a histogram per minute for one observation. If we for example had 1'000 observations, we would have approximately five observations where we hear an owl in the first minute. As the PDF is per hour while the histogram should be per minute, we need to divide every value $f_Y(y_i)$ for our 600 data points by 60. The standard y-axis comprises 10 hours for all graphics, we have 600 columns which might be too many. However, the graphics are created with python and Plotly, which allows for magnification, if desired. Id can also be magnified in this document as it is a vector graphic.
 Calculations and visualisations were done in Jupyter notebooks using the following python code:
 \begin{minted}{python}
 import numpy as np
@@ -466,12 +453,10 @@ fig.show()
 fig.write_image("figures/1c4.pdf")
 \end{minted}
 
-
-
 \chapter{Workbook Assignment 2: Basic Probabilities and Visualizations }	
 
-\section{Visualisation, Expectations and (Co)Variances}
-Assumed you have recorded mappings of X and Y values, what is an appropriate way of visualisation and how do you find the sample covariance as well as the expectation values and variances per variable; assuming the data comes in the following format?\\
+\section{Visualisation, Expectations and (Co-)Variances}
+Assumed one has recorded mappings of X and Y values, what is an appropriate way of visualisation? How do you find the sample covariance as well as the expectation values and variances per variable; assuming the data comes in the following format?\\
 \\
 (1.754, 720.15), (-7.385, -260.86), (1.396, -340.56), (-3.304, 954.75), 
 (-12.159, -370.12),\\ (-6.767, -259.89), (1.233, 261.89), (-7.056, 400.72), 
@@ -479,7 +464,7 @@ Assumed you have recorded mappings of X and Y values, what is an appropriate way
 (7.27, -17.04), (-1.989, 257.91), (3.582, -229.89), \\(-1.2, -349.18), 
 (4.118, 226.05), (-1.834, -534.54), (-1.882, 610.91), (8.677, 70.11) \\
 
-As the variables in the data are both continuous and the question addresses the calculation of correlation, the optimal visualisation is a scatter diagram as for example figure~\eqref{fig:WorkbookAssignment2a}.
+As the variables in the data are both continuous and the question addresses the calculation of correlation, the optimal visualisation is a scatter diagram as for example figure~\eqref{fig:WorkbookAssignment2a}. Other possibilities are excluded as there is not much more information provided on the data set. A line graph for example would be appropriate if we had information that the observations show some development over some time domain. 
 
 \begin{figure}[h]
 \centering
@@ -489,15 +474,13 @@ As the variables in the data are both continuous and the question addresses the 
 \end{figure}
 \FloatBarrier
 
-Looking at the scatter plot, one can observe that the data is quite evenly dispersed; No pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\eqref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value. 
+Looking at the scatter plot, one can observe that the data is quite evenly dispersed; No pattern can be determined at first glance. This rather evenly distributed data also suggests that the expected value for X and Y is rather close to 0. Calculating the expected value for each variable can be understood at the calculation of the expected value of a discrete random variable as the number of observations is discrete. Equation~\eqref{eq:ExpValDiscrete} is therefore the formula to calculate the expected value \cite{mathcenter}. 
 
 
-\begin{equation}  E(X) = \sum [x * P(x)]
+\begin{equation}  
+E(X) = \sum \left[x * P(x)\right]
 \label{eq:ExpValDiscrete}
 \end{equation}
-
-http://mathcenter.oxford.emory.edu/site/math117/expectedValueOfADiscreteRandomVariable/
-\\
 
 The results are consequently $E(X) = -1.5944$ and $E(Y) = 3.3250$.
 
